@@ -1,0 +1,42 @@
+@use '../styles/vars';
+.nav-side-bar{
+  grid-area: sidBar ;
+  display: flex;
+  flex-direction: column;
+//   position: sticky;
+//   height: 100vh;
+  min-width: 20%;
+  background-color: vars.$bleue-color;
+//   top:0;
+//   border-right: 3px solid black;
+  padding: 1rem;
+
+  
+ ul>*{
+ padding-block: 1rem;
+ }
+  &-item{
+      text-decoration: none;
+      padding: 0.5rem;
+      color: white;
+      font-size: 1.3rem;
+      padding-left: 2rem;
+      
+  }
+
+  &-item-active{
+      border-right: 4px solid rgb(0, 174, 255);
+  }
+
+  &-item:hover{
+      color:rgb(32,156,238);
+      border-right: .2rem solid rgb(0, 174, 255);
+  }
+}
+.footer-message {
+  color: #999; /* Gris discret */
+  font-size: 12px;
+  text-align: center;
+  margin-top: auto; /* Place le message en bas du conteneur */
+  padding: 10px 0;
+}

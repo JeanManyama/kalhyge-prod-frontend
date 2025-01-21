@@ -1,0 +1,113 @@
+@use '../styles/vars';
+
+input {
+  box-sizing: border-box;
+}
+
+.modaleInitCard {
+  height: auto;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+
+  & > :first-child {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  &-form {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &-form-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    /* Ajoute une ligne entre chaque groupe d'article */
+    > div:not(:last-child) {
+      padding-bottom: 2rem;
+      border-bottom: 1px vars.$bleue-color dotted;
+    }
+
+    & > .form-group {
+      display: flex;
+      align-items: center; /* Alignement vertical */
+      gap: 1.5rem; /* Espacement uniforme */
+      padding: 0.5rem 0; /* Ajout de padding vertical */
+    }
+
+    & > :last-child {
+      margin-top: 3rem !important;
+    }
+  }
+
+  &-form-form .form-group {
+    width: 100%; /* Les groupes occupent toute la largeur */
+  }
+
+  &-form-form .form-group p {
+    flex: 0 0 150px; /* Largeur fixe pour les étiquettes */
+    text-align: right;
+    margin-right: 1.5rem; /* Espacement uniforme avec les champs */
+    font-weight: bold; /* Optionnel : mettre en valeur les étiquettes */
+    line-height: 1.5; /* Alignement vertical des étiquettes */
+  }
+
+  &-form-form .form-group .form-input {
+    flex: 1; /* Champs de largeur identique */
+    max-width: 200px; /* Largeur maximale */
+    min-width: 200px; /* Largeur minimale */
+  }
+
+  &-form-form .form-group .form-input:first-child {
+    margin-right: 1rem; /* Espacement entre "Initiale" et "Objectif" */
+  }
+
+  &-form-form .form-group .form-input input {
+    width: 100%; /* Champs de saisie sur toute la largeur disponible */
+    box-sizing: border-box; /* Ajustement de la mise en page */
+  }
+}
+
+
+.error-modal-content {
+  color: red !important; /* Changer la couleur du texte en rouge */
+  font-weight: bold!important; /* Rendre le texte un peu plus visible */
+}
+.centered-objective {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre les éléments horizontalement */
+  text-align: center; /* Centre le texte du label */
+}
+
+.centered-objective p {
+  margin-bottom: 8px; /* Ajouter un peu d'espace entre le label et l'input */
+}
+
+.centered-objective .ui.input input {
+  width: auto; /* Assure que l'input n'occupe pas toute la largeur du formulaire */
+}
+.centered-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre les éléments horizontalement */
+  text-align: center; /* Centre le texte du label */
+}
+
+.centered-field p {
+  margin-bottom: 8px; /* Ajouter un peu d'espace entre le label et l'input */
+}
+
+.centered-field .ui.input input {
+  width: auto; /* Assure que l'input n'occupe pas toute la largeur du formulaire */
+}
+
+
+

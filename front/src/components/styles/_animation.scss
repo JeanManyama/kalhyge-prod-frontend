@@ -1,0 +1,85 @@
+/* Image clé pour les annimation*/
+
+@keyframes deplacerVersLaGauche
+{
+    0%    /* à l'etat initial*/
+    {
+     opacity: 0;
+     transform: translateX(-10rem);
+
+    }
+
+    80%
+    {
+    transform: translateX(1rem);
+    }
+
+    100% /* à l'etat final*/
+    {
+    opacity: 1;
+    transform: translate(0);
+    }
+}
+
+@keyframes deplacerVersLaDroite
+{
+    0%
+    {
+    opacity: 0;
+    transform: translateX(10rem);
+
+    }
+
+    80%
+    {
+    transform: translateX(-1rem);
+    }
+
+    100%
+    {
+    opacity: 1;
+    transform: translate(0);
+    }
+}
+
+@keyframes deplacerVersLeHaut
+{
+    0%
+    {
+    opacity: 0;
+    transform: translateY(3rem);
+
+    }
+
+    80%
+    {
+    transform: translateY(1rem);
+    }
+    
+    100%
+    {
+    opacity: 1;
+    transform: translate(0);
+    }
+}
+
+@keyframes deplacerVersLebas
+{
+    0%
+    {
+    opacity: 0;
+    transform: translateY(-3rem);
+
+    }
+
+    80%
+    {
+    transform: translateY(1rem);
+    }
+    
+    100%
+    {
+    opacity: 1;
+    transform: translate(0);
+    }
+}

@@ -1,0 +1,105 @@
+@use '../styles/vars';
+
+.container-list-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2rem;
+  padding: 2rem;
+  flex-grow: 1;
+}
+.card-article {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.remaining-span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+
+  .label {
+    font-weight: bold;
+    color: #555; // Couleur grise tendance
+  }
+
+  .remaining-value {
+    background-color: #ffa500; // Couleur orange
+    color: #fff;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+
+.display-grid {
+  grid-area: prod;
+  display: flex;
+  flex-direction: column; // Organisation en colonne pour préserver le design
+  gap: 2rem;
+  height: auto;
+  padding: 2rem;
+}
+
+.div-title {
+  border-bottom: 1px blue solid;
+  margin-bottom: 2rem;
+}
+
+.sub-title {
+  margin-bottom: 2rem;
+}
+
+.card {
+  width: 100%; // Garde la largeur totale disponible
+  border-bottom: 1px solid #ddd;
+  padding: 2rem 1rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  cursor: pointer;
+  margin-bottom: 2rem; // Assure un espacement correct entre les cartes
+  margin-top: 0; // Supprime les marges supérieures pour éviter les chevauchements
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &-article {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .title-span {
+    font-size: 2rem;
+    color: vars.$bleue-color;
+  }
+
+  .colored-span {
+    background-color: vars.$bleue-color;
+    color: white;
+    border-radius: 10%;
+    padding: 0.5rem;
+    display: inline-block;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+    color: #333;
+  }
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: column; // Conserve la liste en colonne
+  gap: 2rem;
+  justify-content: flex-start; // Garde les cartes en haut
+  align-items: stretch; // Étire les cartes sur toute la largeur si nécessaire
+}

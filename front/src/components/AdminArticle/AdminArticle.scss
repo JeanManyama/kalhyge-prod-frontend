@@ -1,0 +1,100 @@
+@use '../styles/vars';
+/* Css pour le une carte en details */
+
+.produit-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem;
+ 
+  // margin-top: 5rem;
+  border: .1rem solid #ccc;
+}
+.list1 {
+  list-style-type: none; /* Enlève les puces par défaut */
+  padding: 0.5rem;
+  margin: 0;
+  width: 100%;
+}
+
+.list1 li {
+  padding: .62rem;
+  border-bottom: 1px solid #ddd; /* Ligne en bas de chaque li */
+  color: #333;
+}
+
+.list1 li:last-child {
+  border-bottom: none; /* Enlève la ligne du dernier élément */
+}
+
+
+.item {
+  display: block;
+  background: #eee;
+  border-radius: .1rem;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+
+  &-label {
+    // width: 30%;
+    display: flex;
+    justify-content:space-between;
+    gap: 5rem;
+    align-items: center;
+    p{
+      margin: 0!important;
+      // line-height: 0!important;
+    }
+   
+    // Quand on arrive sur la page
+    &--done {
+      opacity: 0.5;
+  
+    }
+    ul{
+      background-position: center;
+    }
+ 
+  }
+
+  &-checkbox {
+    margin-right: 0.5em;
+  }
+
+  &-delete {
+    border: none;
+    cursor: pointer;
+  }
+
+  &-form {
+    display: flex;
+    width: 30%;
+    input {
+      width: 100%;
+    }
+  }
+
+  span {
+    padding: .19em 0
+  }
+  
+}
+.flexe{
+  justify-content: space-between !important;
+}
+.description{
+      
+  flex: auto !important;
+  min-width: 0!important;
+
+}
+.grid{
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 1rem;
+}
+
+
+
