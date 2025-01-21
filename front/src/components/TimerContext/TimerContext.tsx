@@ -196,7 +196,7 @@ useEffect(() => {
 
     const fetchData = useCallback(async (timerId: number) => {
     try {
-      console.log("TIMER ID DANS CONTEXT Avant d'envoyé au back -----------------------------",timerId);
+      // console.log("TIMER ID DANS CONTEXT Avant d'envoyé au back -----------------------------",timerId);
       const response = await fetch(`${apiUrl}/productions/${timerId}`);
       const data = await response.json();  
       console.log(data);
@@ -211,7 +211,7 @@ useEffect(() => {
       console.error("Erreur lors du chargement des données :", error);
     }
   }, []);
-  console.log("LA PRODUCTION DANS CONTEXT A  -----------------------------",production);
+  // console.log("LA PRODUCTION DANS CONTEXT A  -----------------------------",production);
  // Exécuter fetchData à chaque changement de timerId( Initial)
   useEffect(() => {
     if (timerId !== null && !Number.isNaN(timerId)) {
@@ -248,7 +248,7 @@ useEffect(() => {
     try {
      
       const response = await axios.get(`${apiUrl}/timers/today`);
-      console.log("TIMER D'AUJOURD'HUI ---------------------------",response.data.timerId);
+      // console.log("TIMER D'AUJOURD'HUI ---------------------------",response.data.timerId);
       // Mise à jours de la valeur du timer d'aujourd'hui
       setTimerId(response.data.timerId);
       const localStorageIdTimer = response.data.timerId

@@ -138,7 +138,7 @@ function Home() {
 // FETCH DATA Centre, SideBar et Header
   const fetchData = async (timerId : number) => {
     try {
-      console.log("TIMER ID DANS CONTEXT Avant d'envoyé au back -----------------------------",timerId);
+      // console.log("TIMER ID DANS CONTEXT Avant d'envoyé au back -----------------------------",timerId);
       const response = await fetch(`${apiUrl}/productions/${timerId}`);
       const data = await response.json();  
       console.log(data);

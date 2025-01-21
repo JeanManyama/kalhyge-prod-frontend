@@ -51,7 +51,7 @@ const LoginSignupForm = () => {
           password: formData.password,
         });
 
-        console.log('Connexion réussie:', response.data);
+        // console.log('Connexion réussie:', response.data);
         localStorage.setItem('accessToken', response.data.accessToken);
         localStorage.setItem('refreshToken', response.data.refreshToken);
         localStorage.setItem('csrfToken', response.data.csrfToken);
