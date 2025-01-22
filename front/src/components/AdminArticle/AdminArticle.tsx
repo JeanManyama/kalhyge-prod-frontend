@@ -36,7 +36,7 @@ function AdminArticle({
 
   // gestion des erreurs sur le formulaire
   const [error, setError] = useState<string>(""); // État pour gérer les erreurs
-  const [successMessage, setSuccessMessage] = useState<string>(""); // État pour gérer le message de succès
+  const [successMessage, setSuccessMessage] = useState<string>(""); // État pour gérer le message de succ
 
   // SUPPRESSION D'UN ARTICLE
   const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] = useState(false); // Etat pour ouvrir/fermer le modal de confirmation
