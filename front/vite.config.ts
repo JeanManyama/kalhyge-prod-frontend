@@ -17,6 +17,9 @@ export default defineConfig({
   //     input: '/index.html',
   //   },
   // },
+  build: {
+    outDir: 'dist', // Dossier de build attendu par Vercel
+  },
   server: {
     host: true,
     watch: {
