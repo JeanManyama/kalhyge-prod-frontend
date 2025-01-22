@@ -6,7 +6,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   
   plugins: [react()],
-  base: './', 
+  base: '/', 
   // base:'/Kalhyge-prod/',
   // base: import.meta.env.VITE_BASE_URL ,
 
