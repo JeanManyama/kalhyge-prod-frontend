@@ -1,10 +1,15 @@
 {
   "builds": [
     {
-      "src": "front/package.json",  
+      "src": "front/package.json",
       "use": "@vercel/node"
     }
   ],
-  "outputDirectory": "front/dist", 
-  "cleanUrls": true
+  "outputDirectory": "front/dist",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/front/dist/$1"
+    }
+  ]
 }
