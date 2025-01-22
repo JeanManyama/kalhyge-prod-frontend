@@ -126,12 +126,6 @@ function Home() {
     if(userInfo === null){
       fetchUserInfo();
     }
-    // console.log("Le TIMERid EST ---------------------------------", timerId);
-    // if(start){
-      // fetchData(timerId? timerId : 0); 
-    // }
-      
-
   }, []);
 
 
@@ -380,9 +374,6 @@ const handleLogout = async () => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  // console.log("id Timer a -------------------------------------------",  timerId )
-  // console.log("Heure debut -------------------------------------------",  timeBegin )
 
   return (
  

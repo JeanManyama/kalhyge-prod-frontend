@@ -13,8 +13,6 @@ function App() {
     <Router >
       
     <TimerProvider>
-  
-  
     <Routes>
       <Route path="/" element={<LoginSignupForm />} /> {/* Page de connexion par défaut */}
       <Route path="/home" element={<Home />} />

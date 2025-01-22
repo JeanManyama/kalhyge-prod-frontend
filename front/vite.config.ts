@@ -12,6 +12,11 @@ export default defineConfig({
 
   // Pour gérer les soucis avec docker et le serveur de vitejs
   // On rajoute la config suivante
+  // build: {
+  //   rollupOptions: {
+  //     input: '/index.html',
+  //   },
+  // },
   server: {
     host: true,
     watch: {

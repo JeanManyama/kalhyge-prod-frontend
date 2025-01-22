@@ -6,20 +6,6 @@ import './LoginSignupForm.scss'; // Import des styles SCSS
 
 
 const LoginSignupForm = () => {
-
-      //telechargement des images dans assets
-      // const images: Record<string, { default: string }> = import.meta.glob("../../assets/*.jpg", { eager: true });
-      // console.log("Images chargées :", images);
-
-      // const getImageForArticle = (machineName: string): string | null => {
-        
-      //   const imageKey = `../../assets/${machineName}.png`;
-      //   if (!images[imageKey]) {
-      //     console.error(`Image introuvable pour la clé : ${imageKey}`);
-      //   }
-      //   return images[imageKey]?.default || null;
-      // };
-
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [formData, setFormData] = useState({
     email: '',
