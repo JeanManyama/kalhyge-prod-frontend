@@ -18,7 +18,10 @@ export default defineConfig({
   //   },
   // },
   build: {
-    outDir: 'dist', // Dossier de build attendu par Vercel
+    outDir: 'dist', // Vérifiez que le dossier de build est "dist"
+    rollupOptions: {
+      input: 'index.html', // Point d'entrée pour le build
+    },
   },
   server: {
     host: true,
