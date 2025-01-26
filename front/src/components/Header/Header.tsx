@@ -12,7 +12,7 @@ import {
 import ModaleConfirm from "../ModaleConfirm/Modaleconfirm";
 import "./Header.scss";
 import { useNavigate } from "react-router-dom"; // Importer useNavigate
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logokaly.png";
 import jensen from "../../assets/jensen.png";
 import kane from "../../assets/kannegieser.png";
 import plieuse1 from "../../assets/plieuse-1.png";
@@ -254,7 +254,7 @@ const dynamicFormattedTime = formatTime(timeLeft);
             </div>
           )}
         </div>
-
+       <div >
         <div>
           {userInfo && (
             <Button
@@ -275,6 +275,7 @@ const dynamicFormattedTime = formatTime(timeLeft);
             COMPTE
           </Button>
         </div>
+       </div>
       </div>
 
       {/* Dynamisation des machines */}

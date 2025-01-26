@@ -118,9 +118,8 @@ const machineCapacities: Record<string, number> = {
                 active={starts}
               />
             </Segment>
-            <p>
-              À ce rythme, la probabilité d'atteindre l'objectif à l'heure est
-              de {" "}<span>{probability}</span>%.
+            <p className="probability">
+              À ce rythme, nous estimons à {" "}<span>{probability}</span>{" "}%, la chance d'atteindre l'objectif à l'heure
             </p>
           </div>
         );

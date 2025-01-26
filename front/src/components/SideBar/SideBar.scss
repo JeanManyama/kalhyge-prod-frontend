@@ -1,42 +1,43 @@
 @use '../styles/vars';
-.nav-side-bar{
-  grid-area: sidBar ;
+
+.nav-side-bar {
+  grid-area: sidBar;
   display: flex;
   flex-direction: column;
-//   position: sticky;
-//   height: 100vh;
   min-width: 20%;
-  background-color: vars.$bleue-color;
-//   top:0;
-//   border-right: 3px solid black;
+  background-color: vars.$bleue-color; // Bleu marine doux
   padding: 1rem;
 
-  
- ul>*{
- padding-block: 1rem;
- }
-  &-item{
-      text-decoration: none;
-      padding: 0.5rem;
-      color: white;
-      font-size: 1.3rem;
-      padding-left: 2rem;
-      
+  ul > * {
+    padding-block: 1.5rem;
   }
 
-  &-item-active{
-      border-right: 4px solid rgb(0, 174, 255);
+  &-item {
+    text-decoration: none;
+    padding: 0.5rem;
+    color: #DDE9F2; // Bleu clair presque blanc
+    font-size: 1.3rem;
+    padding-left: 2rem;
+    transition: all 0.3s ease-in-out; // Animation fluide pour les effets
   }
 
-  &-item:hover{
-      color:rgb(32,156,238);
-      border-right: .2rem solid rgb(0, 174, 255);
+  &-item-active {
+    border-right: 4px solid #62C6F5; // Bleu éclatant
+  }
+
+  &-item:hover {
+    color: #3CA1C3; // Cyan clair
+    border-right: 0.2rem solid #62C6F5; // Accentuation vive
   }
 }
+
 .footer-message {
-  color: #999; /* Gris discret */
+  color: #A1B8CE; // Bleu-gris doux pour un effet discret
   font-size: 12px;
   text-align: center;
-  margin-top: auto; /* Place le message en bas du conteneur */
+  margin-top: auto; // Place le message en bas du conteneur
   padding: 10px 0;
 }
+
+
+// background-color: vars.$bleue-color;

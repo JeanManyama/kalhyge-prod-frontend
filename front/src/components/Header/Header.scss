@@ -14,15 +14,6 @@
 
   grid-area: headers ;
 
-  // J'AVAIS ÇA AVANT 
-
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-  // margin: 1rem;
-  // gap: 20rem;
-
-  // gap:s .7rem;
 
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -39,63 +30,44 @@
 
   &-1{
 
-    grid-area: headers1;
+      grid-area: headers1;
+      display: flex;
+      justify-content: space-around;
 
-
-
+  & > *:last-child {
     display: flex;
-    justify-content: space-around;
-    // max-width: 10rem;
-    // position: absolute;
-    // &>*{
-    //   position: absolute;
-    // }
-    // .marge{
-    //   margin: 0!important;
-    //   display: block!important;
-    // }
-
-
-
-  // display: grid;
-  // grid-template-columns: 1fr 1fr;
-  // grid-gap: 1rem;
-  // grid-template-areas:
-  // "search signin";
-
-
-  &_search{
-    grid-area: header-1;
-    display: flex;
+    gap: 3rem;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
   }
-
-  &_signin{
-    grid-area: signin;
-    display: flex;
-  }
-  &_form_welcome{
-
-  
-      width: auto;
-    
-      text-align: center;
-    
-    
-    
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    *{
-      margin: 0;
+    &_search{
+      grid-area: header-1;
+      display: flex;
     }
-  }
-  &_btn-update-password{
-    // margin: 0 .25em 0 0;
-    // padding: .78571429em 1.5em .78571429em;
-    // text-transform: none;
-    // text-shadow: none;
-    // font-weight: 700;
-    // line-height: 1em;
-  }
-  }
+
+    &_signin{
+      grid-area: signin;
+      display: flex;
+    }
+    &_form_welcome{
+
+    
+        width: auto;
+      
+        text-align: center;
+      
+      
+      
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      *{
+        margin: 0;
+      }
+    }
+
+
+    &_btn-update-password{
+    }
+}
 
 
   &-21{
