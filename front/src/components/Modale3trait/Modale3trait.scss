@@ -1,14 +1,14 @@
 
   .hamburger{
-    width: 30px;
-    height: 30px;
+    width: 1.6rem;
+    height: 1.6rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: .6rem;
+    left: .6rem;
     z-index: 999999;
     box-shadow: 0 .9rem 2rem rgba(0, 0, 0, 0.15);
   }

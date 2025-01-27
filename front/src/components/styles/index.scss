@@ -288,6 +288,9 @@ padding: 0!important;
 
 // Resposive
 @media screen and (max-width: 320px) {
+  .app {
+    background-attachment: scroll; /* Désactiver l'effet fixe sur mobile */
+  }
   .header-1 > :nth-last-child(-n+2) {
     display: flex;
     flex-direction: row !important;
@@ -323,6 +326,9 @@ padding: 0!important;
 }
 
 @media screen and (max-width: 560px) {
+  .app {
+    background-attachment: scroll; /* Désactiver l'effet fixe sur mobile */
+  }
   .header-1 > :nth-last-child(-n+2) {
     display: flex;
     flex-direction: row !important;
