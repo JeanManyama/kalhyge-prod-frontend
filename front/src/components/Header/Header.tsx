@@ -316,7 +316,7 @@ const dynamicFormattedTime = formatTime(timeLeft);
 
       {/* Partie du démarrage */}
       <div className="header-3">
-        <div className="header-3_text">
+        <div className="">
           <h1>
             <span>Production</span>
             <span>en temps réel</span>

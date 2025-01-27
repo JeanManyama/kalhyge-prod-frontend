@@ -474,9 +474,13 @@ padding: 0!important;
 }
 
 @media screen and (max-width: 940px) {
+ 
+    
+    
+  
   .app {
     // padding: 1rem;
-   
+    background-attachment: scroll;
     display: flex;
     gap: 2.5rem;
     width: 100%; // S'assure que l'app occupe toute la largeur
