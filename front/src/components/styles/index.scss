@@ -424,18 +424,18 @@ padding: 0!important;
     .header-2{
     display: flex;
     flex-direction: column;
-    padding: 1rem; /* Ajoute un padding interne au conteneur */
-    overflow-x: hidden; /* Empêche les débordements horizontaux */
+    padding: 1rem; 
+    overflow-x: hidden; 
   }
   .header-2_item {
-    width: calc(100% - 2rem); /* S'assure que chaque élément respecte la largeur de l'écran */
-    margin: 0 auto; /* Centre les items */
+    width: calc(100% - 2rem); 
+    margin: 0 auto; 
   }
 
   .header-2_title {
-    left: 0.5rem; /* Ajuste la position pour éviter de couper le texte */
-    right: 0.5rem; /* Laisse un espace à droite aussi */
-    text-align: center; /* Centre le texte pour un meilleur rendu */
+    left: 0.5rem;
+    right: 0.5rem; 
+    text-align: center; 
   }
   .header-1{
       display: flex;

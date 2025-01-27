@@ -257,25 +257,35 @@ button:disabled {
   cursor: not-allowed;
 }
 .header-2_item {
-  margin: 0; /* Supprime les marges */
-  padding: 0; /* Supprime les paddings */
-  overflow: hidden; /* Empêche les débordements */
-  box-sizing: border-box; /* Assure un calcul correct des dimensions */
+  margin: 0; 
+  padding: 0; 
+  overflow: hidden; 
+  box-sizing: border-box; 
 }
 .header-2_title {
   position: absolute;
-  top: 7rem; /* Ajuste cette valeur si nécessaire */
-  left: 1rem; /* Ajoute une marge à gauche pour éviter le débordement */
-  right: 1rem; /* Garde une marge à droite pour éviter les débordements */
-  width: calc(100% - 2rem); /* Assure que le titre ne dépasse pas les limites */
-  box-sizing: border-box; /* Inclut le padding/margin dans le calcul de largeur */
+  top: 7rem; 
+  left: 1rem; 
+  right: 1rem; 
+  width: calc(100% - 2rem);
+  box-sizing: border-box; 
 }
 
 .header-2_title, .header-2_span {
   margin: 0;
-  padding: 0.5rem; /* Ajuste le padding si nécessaire */
-  text-align: center; /* Ou 'left' selon le design voulu */
-  overflow: hidden; /* Empêche les débordements */
-  white-space: nowrap; /* Empêche les textes longs de passer à la ligne */
-  text-overflow: ellipsis; /* Ajoute des points si le texte est trop long */
+  padding: 0.5rem;
+  text-align: center; 
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+}
+
+.header-3_text h1 span:last-child {
+  font-weight: 700;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 
+               0 0 6px rgba(255, 126, 95, 0.6); 
 }
