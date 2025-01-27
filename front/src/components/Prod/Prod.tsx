@@ -75,16 +75,10 @@ const machineCapacities: Record<string, number> = {
      
       {prod?.map((article) => {
         // Calculer le pourcentage de progression par rapport à l'objectif
-        const percentage =
-          article.objective > 0
-            ? Math.min(
-                Math.round((article.total_quantity_valid / article.objective) * 100),
-                100
-              )
-            : 0; // Si l'objectif est 0, le pourcentage reste 0
-
+        const percentage = article.objective > 0 ? Math.min(Math.round((article.total_quantity_valid / article.objective) * 100),100): 0; // Si l'objectif est 0, le pourcentage reste 0
+              // console.log("OBJECTIF est :----", article.objective)
             // Calculer la probabilité d'atteindre l'objectif
-        const probability = calculateProbability(article);
+        const probability =article.objective > 0 ? calculateProbability(article) : 0;
 
 
         // Calculer les articles restants
