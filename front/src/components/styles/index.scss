@@ -288,9 +288,14 @@ padding: 0!important;
 
 // Resposive
 @media screen and (max-width: 320px) {
-  .app {
+ 
+    .app {
     background-attachment: scroll; /* Désactiver l'effet fixe sur mobile */
   }
+  .display-grid {
+    padding: 0;
+  }
+
   .header-1 > :nth-last-child(-n+2) {
     display: flex;
     flex-direction: row !important;
@@ -326,9 +331,15 @@ padding: 0!important;
 }
 
 @media screen and (max-width: 560px) {
+
   .app {
+    // padding: 2rem;
     background-attachment: scroll; /* Désactiver l'effet fixe sur mobile */
   }
+  .display-grid {
+    padding: 0;
+  }
+
   .header-1 > :nth-last-child(-n+2) {
     display: flex;
     flex-direction: row !important;
@@ -443,6 +454,36 @@ padding: 0!important;
   }
 }
 
+@media screen and (max-width: 940px) {
+  .app {
+    // padding: 1rem;
+   
+    display: flex;
+    gap: 2.5rem;
+    width: 100%; // S'assure que l'app occupe toute la largeur
+    overflow-x: hidden; // Prévenir les marges horizontales indésirables
+  }
+
+  .rightbar {
+    // margin-left: -0.3rem;
+    display: grid;
+    grid-template-areas:
+      "headers"
+      "prod";
+    margin-right: 0; // Assure qu'il n'y a pas de marge à droite
+    padding-right: 0; // Supprime le padding éventuel à droite
+  }
+
+  .ui.form .fields {
+    margin: 0;
+    display: flex !important;
+    justify-content: center;
+    gap: 0.7rem;
+
+    //  flex-wrap: nowrap;
+  }
+}
+
 @media screen and (max-width: 1170px) {
   .bento {
     margin: 10px;
@@ -493,32 +534,7 @@ padding: 0!important;
 
 }
   
-@media screen and (max-width: 940px) {
-  .app {
-    display: flex;
-    gap: 2rem;
-    width: 100%; // S'assure que l'app occupe toute la largeur
-    overflow-x: hidden; // Prévenir les marges horizontales indésirables
-  }
 
-  .rightbar {
-    display: grid;
-    grid-template-areas:
-      "headers"
-      "prod";
-    margin-right: 0; // Assure qu'il n'y a pas de marge à droite
-    padding-right: 0; // Supprime le padding éventuel à droite
-  }
-
-  .ui.form .fields {
-    margin: 0;
-    display: flex !important;
-    justify-content: center;
-    gap: 0.7rem;
-
-    //  flex-wrap: nowrap;
-  }
-}
 
 
 

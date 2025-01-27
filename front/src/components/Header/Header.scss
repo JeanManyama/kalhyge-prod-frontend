@@ -1,17 +1,5 @@
 @use '../styles/vars';
 .header{
-  // display: flex;
-  
-  // justify-content: space-between;
-  // align-items: center;
-  // align-self: flex-end;
-  // padding: 1rem 2rem;
-  // width: 80%;
-  // top: 0;
-  // position:absolute;
-  // margin-left: 20%;
-  // height: 40%;
-
   grid-area: headers ;
 
 
@@ -267,4 +255,19 @@
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+.header-2_item {
+  margin: 0; /* Supprime les marges */
+  padding: 0; /* Supprime les paddings */
+  overflow: hidden; /* Empêche les débordements */
+  box-sizing: border-box; /* Assure un calcul correct des dimensions */
+}
+
+.header-2_title, .header-2_span {
+  margin: 0;
+  padding: 0.5rem; /* Ajuste le padding si nécessaire */
+  text-align: center; /* Ou 'left' selon le design voulu */
+  overflow: hidden; /* Empêche les débordements */
+  white-space: nowrap; /* Empêche les textes longs de passer à la ligne */
+  text-overflow: ellipsis; /* Ajoute des points si le texte est trop long */
 }
