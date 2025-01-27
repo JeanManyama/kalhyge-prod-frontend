@@ -262,6 +262,14 @@ button:disabled {
   overflow: hidden; /* Empêche les débordements */
   box-sizing: border-box; /* Assure un calcul correct des dimensions */
 }
+.header-2_title {
+  position: absolute;
+  top: 7rem; /* Ajuste cette valeur si nécessaire */
+  left: 1rem; /* Ajoute une marge à gauche pour éviter le débordement */
+  right: 1rem; /* Garde une marge à droite pour éviter les débordements */
+  width: calc(100% - 2rem); /* Assure que le titre ne dépasse pas les limites */
+  box-sizing: border-box; /* Inclut le padding/margin dans le calcul de largeur */
+}
 
 .header-2_title, .header-2_span {
   margin: 0;

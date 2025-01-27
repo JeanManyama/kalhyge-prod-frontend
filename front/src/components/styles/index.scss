@@ -13,7 +13,9 @@ html, body, #root, #app {
   box-sizing: border-box;
 }
 
-
+.app{
+  padding: .5rem;
+}
 h1{
 
 
@@ -288,7 +290,7 @@ padding: 0!important;
 
 // Resposive
 @media screen and (max-width: 320px) {
- 
+
     .app {
     background-attachment: scroll; /* Désactiver l'effet fixe sur mobile */
   }
@@ -308,7 +310,10 @@ padding: 0!important;
     padding: 0 !important; // Supprime le padding éventuel à droite
   }
   .app {
-    width: 100%; // Ajuste la largeur à 100% pour les très petits écrans
+    width: calc(100% - 2rem);
+    margin: 0 auto;
+    box-sizing: border-box;
+    // width: 100%; // Ajuste la largeur à 100% pour les très petits écrans
     overflow-x: hidden; // Empêche les débordements horizontaux
   }
   
@@ -338,6 +343,7 @@ padding: 0!important;
   }
   .display-grid {
     padding: 0;
+    margin: 0;
   }
 
   .header-1 > :nth-last-child(-n+2) {
@@ -354,7 +360,10 @@ padding: 0!important;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    width: 100%; // S'assure que l'app occupe toute la largeur
+    width: calc(100% - 2rem);
+    //  margin: 0 auto;
+     box-sizing: border-box; 
+    // width: 100%; // S'assure que l'app occupe toute la largeur
     overflow-x: hidden; // Empêche tout débordement horizontal
   }
 
