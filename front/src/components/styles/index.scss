@@ -483,8 +483,8 @@ padding: 0!important;
     background-attachment: scroll;
     display: flex;
     gap: 2.5rem;
-    width: 100%; // S'assure que l'app occupe toute la largeur
-    overflow-x: hidden; // Prévenir les marges horizontales indésirables
+    width: 100%; 
+    overflow-x: hidden; 
   }
 
   .rightbar {
@@ -493,8 +493,8 @@ padding: 0!important;
     grid-template-areas:
       "headers"
       "prod";
-    margin-right: 0; // Assure qu'il n'y a pas de marge à droite
-    padding-right: 0; // Supprime le padding éventuel à droite
+    margin-right: 0; 
+    padding-right: 0; 
   }
 
   .ui.form .fields {
@@ -503,7 +503,6 @@ padding: 0!important;
     justify-content: center;
     gap: 0.7rem;
 
-    //  flex-wrap: nowrap;
   }
 }
 

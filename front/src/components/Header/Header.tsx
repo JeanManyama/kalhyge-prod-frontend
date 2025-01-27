@@ -247,8 +247,8 @@ const dynamicFormattedTime = formatTime(timeLeft);
         <div>
           {userInfo && (
             <div className="header-1_form_welcome">
-              <h5>Bienvenue, {userInfo.firstname} !</h5>
-              <p>
+              <h5 className="welcome-text">Bienvenue, {userInfo.firstname} !</h5>
+              <p className="connected-time">
                 Connecté depuis : {loginTime ? loginTime.toLocaleTimeString() : "..." }
               </p>
             </div>
