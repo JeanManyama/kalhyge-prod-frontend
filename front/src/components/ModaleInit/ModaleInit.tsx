@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaTimes, FaCheck, FaClock, FaChartLine } from "react-icons/fa";
 import axios from "axios";
 import io from "socket.io-client"; 
 import {
@@ -429,101 +430,131 @@ function ModaleInit({
         <ModalContent image>
           <ModalDescription>
             <div className="modaleInitCard">
-              <h4>Initialisation</h4>
+              <h4 className="text-2xl font-bold text-center mb-6">
+                <FaChartLine className="inline-block text-blue-500 mr-2" />
+                Initialisation
+              </h4>
               <div className="modaleInitCard-form">
                 <Form
                   className="modaleInitCard-form-form"
                   onSubmit={handleSubmit}
                 >
                   {articles?.map((article) => (
-                    <div key={article.id}>
-                      <h4>{article.name.toUpperCase()}</h4>
-                      <div>
+                    <div key={article.id} className="border-b border-gray-300 pb-4 mb-6">
+                      <h4 className="text-xl font-semibold text-gray-800 mb-4">
+                        {article.name.toUpperCase()}
+                      </h4>
+                      <div className="grid grid-cols-1 gap-4">
                         {machines?.map((machine) => (
-                          <FormGroup widths={3} key={machine.id}>
-                            <p>{capitalizeFirstLetter(machine.name)}</p>
+                          <FormGroup widths={3} key={machine.id} className=" items-center">
+                            <p className="">
+                              {capitalizeFirstLetter(machine.name)}
+                            </p>
                             <FormInput
                               placeholder="Initiale"
-                              value={
-                                inputs[`${article.id}-${machine.id}-initial`] ||
-                                ""
-                              }
+                              value={inputs[`${article.id}-${machine.id}-initial`] || ""}
                               onChange={(e) =>
                                 handleInputChange(
                                   `${article.id}-${machine.id}-initial`,
                                   e.target.value
                                 )
                               }
+                              style={{
+                                height: '20px',
+                                width: '100%',
+                                padding: '0px', // Réduire le padding à un minimum (ou mets 0 si nécessaire)
+                                margin: '0', // Supprimer les marges
+                                fontSize: '12px', // Diminue la taille de la police pour économiser de l'espace
+                           
+                            
+                                boxSizing: 'border-box',
+                                border: 'none'
+
+                              }}
                             />
                           </FormGroup>
                         ))}
                       </div>
-                      <FormGroup widths={3} key={`objective-${article.id}`}>
+                      <FormGroup widths={3} key={`objective-${article.id}`} className="centered-field mt-4">
                         <FormInput
                           placeholder="Objectif"
                           value={inputs[`${article.id}-objectif`] || ""}
                           onChange={(e) =>
-                            handleInputChange(
-                              `${article.id}-objectif`,
-                              e.target.value
-                            )
+                            handleInputChange(`${article.id}-objectif`, e.target.value)
                           }
+                          className="rounded-lg border-gray-300 shadow-sm focus:ring focus:ring-blue-300"
                         />
                       </FormGroup>
                     </div>
                   ))}
-
-                  <h4>TEMPS DE PRODUCTION</h4>
-                  <FormGroup widths={2}>
-                    <FormGroup widths={"equal"}>
-                      <FormSelect
-                        fluid
-                        label="Heure"
-                        placeholder="1h"
-                        options={[
-                          { key: "0", text: "0", value: "0" },
-                          { key: "1", text: "1", value: "1" },
-                          { key: "3", text: "3", value: "3" },
-                          { key: "4", text: "4", value: "4" },
-                          { key: "5", text: "5", value: "5" },
-                          { key: "6", text: "6", value: "6" },
-                          { key: "7", text: "7", value: "7" },
-                          { key: "8", text: "8", value: "8" },
-                        ]}
-                        value={inputs["production-hour"] || ""}
-                        onChange={(_e, { value }) =>
-                          handleInputChange("production-hour", value as string)
-                        }
-                      />
-                      <FormSelect
-                        fluid
-                        label="Minute"
-                        placeholder="30 min"
-                        options={[
-                          { key: "0", text: "0", value: "0" },
-                          { key: "5", text: "5", value: "5" },
-                          { key: "10", text: "10", value: "10" },
-                          { key: "15", text: "15", value: "15" },
-                          { key: "20", text: "20", value: "20" },
-                          { key: "25", text: "25", value: "25" },
-                          { key: "30", text: "30", value: "30" },
-                          { key: "35", text: "35", value: "35" },
-                          { key: "40", text: "40", value: "40" },
-                          { key: "45", text: "45", value: "45" },
-                          { key: "50", text: "50", value: "50" },
-                          { key: "55", text: "55", value: "55" },
-                        ]}
-                        value={inputs["production-minute"] || ""}
-                        onChange={(_e, { value }) =>
-                          handleInputChange("production-minute", value as string)
-                        }
-                      />
-                    </FormGroup>
+  
+                  <h4 className="text-xl font-semibold text-gray-800 mb-4">
+                    <FaClock className="inline-block text-yellow-500 mr-2" />
+                    Temps de production
+                  </h4>
+                  <FormGroup widths={2} className="grid grid-cols-2 gap-4">
+                    <FormSelect
+                      fluid
+                      label="Heure"
+                      placeholder="1h"
+                      options={[
+                        { key: "0", text: "0", value: "0" },
+                        { key: "1", text: "1", value: "1" },
+                        { key: "3", text: "3", value: "3" },
+                        { key: "4", text: "4", value: "4" },
+                        { key: "5", text: "5", value: "5" },
+                        { key: "6", text: "6", value: "6" },
+                        { key: "7", text: "7", value: "7" },
+                        { key: "8", text: "8", value: "8" },
+                      ]}
+                      value={inputs["production-hour"] || ""}
+                      onChange={(_e, { value }) =>
+                        handleInputChange("production-hour", value as string)
+                      }
+                      className="rounded-lg border-gray-300 shadow-sm focus:ring focus:ring-blue-300"
+                    />
+                    <FormSelect
+                      fluid
+                      label="Minute"
+                      placeholder="30 min"
+                      options={[
+                        { key: "0", text: "0", value: "0" },
+                        { key: "5", text: "5", value: "5" },
+                        { key: "10", text: "10", value: "10" },
+                        { key: "15", text: "15", value: "15" },
+                        { key: "20", text: "20", value: "20" },
+                        { key: "25", text: "25", value: "25" },
+                        { key: "30", text: "30", value: "30" },
+                        { key: "35", text: "35", value: "35" },
+                        { key: "40", text: "40", value: "40" },
+                        { key: "45", text: "45", value: "45" },
+                        { key: "50", text: "50", value: "50" },
+                        { key: "55", text: "55", value: "55" },
+                      ]}
+                      value={inputs["production-minute"] || ""}
+                      onChange={(_e, { value }) =>
+                        handleInputChange("production-minute", value as string)
+                      }
+                      className="rounded-lg border-gray-300 shadow-sm focus:ring focus:ring-blue-300"
+                    />
                   </FormGroup>
-
-                  <div>
-                    <Button color="red" onClick={() => setOpenInitialisation(false)}>Fermer</Button>
-                    <Button type="submit">Créer Production</Button>
+  
+                  <div className="flex justify-end space-x-4 mt-6">
+                    <Button
+                      color="red"
+                      onClick={() => setOpenInitialisation(false)}
+                      className="flex items-center px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
+                    >
+                      <FaTimes className="mr-2" />
+                      Fermer
+                    </Button>
+                    <Button
+                      type="submit"
+                      className="flex items-center px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+                    >
+                      <FaCheck className="mr-2" />
+                      Créer Production
+                    </Button>
                   </div>
                 </Form>
               </div>
@@ -531,7 +562,7 @@ function ModaleInit({
           </ModalDescription>
         </ModalContent>
       </Modal>
-
+  
       {/* Modal dynamique */}
       <Modal
         size="small"
@@ -546,11 +577,16 @@ function ModaleInit({
           <p>{messageModal}</p>
         </ModalContent>
         <ModalActions>
-          <Button onClick={() => setShowErrorModal(false)}>OK</Button>
+          <Button onClick={() => setShowErrorModal(false)} className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition duration-300">
+            OK
+          </Button>
         </ModalActions>
       </Modal>
     </>
   );
+
 }
 
 export default ModaleInit;
+
+
