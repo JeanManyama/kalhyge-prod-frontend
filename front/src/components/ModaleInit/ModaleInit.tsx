@@ -477,7 +477,7 @@ function ModaleInit({
                       </div>
                       <FormGroup widths={3} key={`objective-${article.id}`} className="centered-field mt-4">
                         <FormInput
-                          placeholder="Objectif"
+                          placeholder="Objectif de la journée"
                           value={inputs[`${article.id}-objectif`] || ""}
                           onChange={(e) =>
                             handleInputChange(`${article.id}-objectif`, e.target.value)

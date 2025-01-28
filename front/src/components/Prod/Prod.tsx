@@ -34,13 +34,14 @@ const machineCapacities: Record<string, number> = {
   const calculateProbability = (article : ArticleProduction) => {
     const { objective, total_quantity_valid, machines } = article;
 
-    // console.log("OBJECTIVE------------", objective);
-    // console.log("Quantité valid est ------------", total_quantity_valid);
+    console.log("OBJECTIVE------------", objective);
+    console.log("Quantité valid est ------------", total_quantity_valid);
 
     // Quantité restante à produire
     const quantityRemaining = objective - total_quantity_valid;
 
     if (quantityRemaining <= 0) {
+      console.log("Nous sommes ici dans la soustraction ")
       return 100; // Objectif atteint ou dépassé
     }
 
@@ -76,13 +77,14 @@ const machineCapacities: Record<string, number> = {
       {prod?.map((article) => {
         // Calculer le pourcentage de progression par rapport à l'objectif
         const percentage = article.objective > 0 ? Math.min(Math.round((article.total_quantity_valid / article.objective) * 100),100): 0; // Si l'objectif est 0, le pourcentage reste 0
-              // console.log("OBJECTIF est :----", article.objective)
+              console.log("Le pourcentage est de-------------------- :  ", percentage)
+        // console.log("OBJECTIF est :----", article.objective)
             // Calculer la probabilité d'atteindre l'objectif
-        const probability =article.objective > 0 ? calculateProbability(article) : 0;
-
+        const probability =calculateProbability(article);
+        console.log("La probabilité retournée est ", probability)
 
         // Calculer les articles restants
-        const articlesRemaining = Math.max(0, article.objective - (article.total_quantity_valid/2))
+        const articlesRemaining = Math.max(0, article.objective - (article.total_quantity_valid))
         return (
           <div className="card" key={article.id}>
             <div className="card-article">
@@ -91,16 +93,16 @@ const machineCapacities: Record<string, number> = {
               </h3>
               <div className="remaining-span">
                 <span className="label">Articles Restants :</span>
-                <span className="remaining-value">{articlesRemaining*2}</span>
+                <span className="remaining-value">{articlesRemaining}</span>
               </div>
               <span className="colored-span">
-                {(article.objective)*2} pièces
+                {(article.objective)} pièces
               </span>
             </div>
             <Segment color="red" className="progressbar-segment">
          
               <Progress
-                value={percentage/2}
+                value={percentage}
                 total={100}
                 progress="percent"
                 size="big"
