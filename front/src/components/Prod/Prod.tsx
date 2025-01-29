@@ -37,11 +37,14 @@ const machineCapacities: Record<string, number> = {
     console.log("OBJECTIVE------------", objective);
     console.log("Quantité valid est ------------", total_quantity_valid);
 
+    if(objective===0 && total_quantity_valid===0){
+      return 0;
+    }
     // Quantité restante à produire
     const quantityRemaining = objective - total_quantity_valid;
 
     if (quantityRemaining <= 0) {
-      console.log("Nous sommes ici dans la soustraction ")
+      // console.log("Nous sommes ici dans la soustraction ")
       return 100; // Objectif atteint ou dépassé
     }
 
@@ -62,6 +65,8 @@ const machineCapacities: Record<string, number> = {
 
   //  console.log("Quantité restant à produire est ------------", quantityRemaining);
   // Probabilité d'atteindre l'objectif
+  console.log("Valeur de totalCapacityInTimeRemaining est ---- :", totalCapacityInTimeRemaining)
+  console.log("Valeur de quantityRemaining est ---- :", quantityRemaining)
   const probability = Math.min(
     Math.round((totalCapacityInTimeRemaining / quantityRemaining) * 100),
     100
@@ -77,7 +82,7 @@ const machineCapacities: Record<string, number> = {
       {prod?.map((article) => {
         // Calculer le pourcentage de progression par rapport à l'objectif
         const percentage = article.objective > 0 ? Math.min(Math.round((article.total_quantity_valid / article.objective) * 100),100): 0; // Si l'objectif est 0, le pourcentage reste 0
-              console.log("Le pourcentage est de-------------------- :  ", percentage)
+              // console.log("Le pourcentage est de-------------------- :  ", percentage)
         // console.log("OBJECTIF est :----", article.objective)
             // Calculer la probabilité d'atteindre l'objectif
         const probability =calculateProbability(article);
