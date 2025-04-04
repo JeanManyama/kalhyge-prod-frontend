@@ -3,7 +3,9 @@ import axios from 'axios';
 import  { createContext, useState, useContext, type ReactNode, useEffect, useCallback  } from "react";
 import type { Machine, Article, ArticleProduction } from '../@types';
 import { io } from 'socket.io-client';
-const socket = io(import.meta.env.VITE_API_URL); 
+const socket = io(import.meta.env.VITE_API_URL, {
+  withCredentials: true,
+}); 
 // Définir le type du contexte
 interface TimerContextType {
   hours : number,
