@@ -18,7 +18,7 @@ export default defineConfig({
   //   },
   // },
   build: {
-    outDir: 'dist', // Vérifiez que le dossier de build est "dist"
+    outDir: 'dist', // Vérifiez que le dossier de build est bien "dist"
     rollupOptions: {
       input: 'index.html', // Point d'entrée pour le build
     },
