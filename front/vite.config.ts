@@ -11,7 +11,7 @@ export default defineConfig({
   // base: import.meta.env.VITE_BASE_URL ,
 
   // Pour gérer les soucis avec docker et le serveurs de vitejs
-  // On rajoute la config suivante
+  // On rajout la config suivante
   // build: {
   //   rollupOptions: {
   //     input: '/index.html',
