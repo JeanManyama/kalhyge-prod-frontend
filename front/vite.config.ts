@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/', 
   // base:'/Kalhyge-prod/',
-  // base: import.meta.env.VITE_BASE_URL ,
+  // base: import.meta.env.VITE_BASE_URl,
 
   // Pour gérer les soucis avec docker et le serveurs de vitejs
   // On rajout la config suivante
