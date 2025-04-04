@@ -65,7 +65,7 @@ function Home() {
       });
   
       setUserRole(response.data.message); // Stocker le role de l'utilisateur
-      // console.log('Role utilisateur récupéré----------------------------------- :', response.data.message);
+      // console.log('Role utilisateur récupéré--------------------------------- :', response.data.message);
     } catch (err: unknown) { // Typage de l'erreur comme unknown
       // Vérification si l'erreur est une err d'axios
       if (axios.isAxiosError(err)) {
