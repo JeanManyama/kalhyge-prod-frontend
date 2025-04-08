@@ -43,12 +43,78 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   background-color: #6c757d;
 }
 
+
+
+
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputAuthenication {
+  width: 100%;  // Prendre toute la largeur disponible
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Ciblage plus spécifique pour le bouton "œil" */
+.toggle-password {
+  position: absolute;
+  right: 10px;  // Positionne le bouton à 10px de la droite
+  top: 50%;  // Centrer verticalement
+  transform: translateY(-50%);  // Ajuster la position verticale
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;  // Taille de l'icône
+  color: #333;  // Couleur de l'icône
+  transition: none;  // Désactiver toute transition pour éviter le changement de couleur au survol
+  width: auto !important;
+}
+
+/* Désactivation complète des effets au survol et au focus */
+.toggle-password:hover,
+.toggle-password:focus {
+  color: #333 !important;  // Ne pas changer la couleur au survol ou au focus
+  outline: none !important;  // Enlève la bordure au focus
+  background: none !important;  // Enlève le fond au survol
+}
+
+/* Enlever les styles de bouton par défaut qui affectent le survol */
+.toggle-password:active {
+  background: none !important;
+  border: none !important;
+  color: #333 !important;  // Toujours la couleur par défaut
+}
+
 /* Styles pour les messages d'erreur */
 .error {
   color: red;
   margin-top: 10px;
 }
+
 .succes {
   color: green;
   margin-top: 10px;
 }
+
+/* Media query pour la responsivité */
+// @media (max-width: 940px) {
+//   .password-wrapper {
+//     width: 100%;  // Assurez-vous que l'input prend toute la largeur
+//   }
+
+//   .inputAuthenication {
+//     width: calc(100% - 40px);  // Compense la largeur du bouton
+//   }
+
+//   .toggle-password {
+//     right: 10px;  // Toujours à 10px de la droite
+//     top: 50%;  // Centré verticalement
+//     transform: translateY(-50%);
+//   }
+// }

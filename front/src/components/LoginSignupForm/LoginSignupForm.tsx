@@ -14,6 +14,8 @@ const LoginSignupForm = () => {
   });
   const [error, setError] = useState<string | null>(null);
   const [succesMessage, setSuccessMessage] = useState<string | null>(null)
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -104,15 +106,27 @@ const LoginSignupForm = () => {
           className="inputAuthenication"
           required
         />
-        <input
-          type="password"
-          name="password"
-          placeholder="Mot de passe"
-          value={formData.password}
-          onChange={handleChange}
-          className="inputAuthenication"
-          required
-        />
+<div className="password-wrapper">
+  <input
+    type={showPassword ? 'text' : 'password'}
+    name="password"
+    placeholder="Mot de passe"
+    value={formData.password}
+    onChange={handleChange}
+    className="inputAuthenication"
+    required
+  />
+  <button
+    type="button"
+    onClick={() => setShowPassword((prev) => !prev)}
+    className="toggle-password"
+    aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+  >
+    {showPassword ? '🙈' : '👁️'}
+  </button>
+</div>
+
+
         <button type="submit" className="button">
           {isLoginMode ? 'Se connecter' : 'Créer un compte'}
         </button>
