@@ -1,19 +1,28 @@
 import type React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './ModaleUpdatePassword.scss';
 
 interface ModaleUpdatePasswordProps {
   isOpen: boolean;
+  fetchUserInfo : () => Promise<void>;
   onClose: () => void;
   onSave: (newPassword: string) => void;
 }
 
-const ModaleUpdatePassword: React.FC<ModaleUpdatePasswordProps> = ({ isOpen, onClose, onSave }) => {
+const ModaleUpdatePassword: React.FC<ModaleUpdatePasswordProps> = ({ isOpen, fetchUserInfo,  onClose, onSave }) => {
   const [newPassword, setNewPassword] = useState('');
 
+  useEffect(()=>{
+    if(isOpen){
+      fetchUserInfo()
+    }
+   
+  },[isOpen, fetchUserInfo]);
+  
   if (!isOpen) {
     return null; // Ne rien afficher si la modale n'est pas ouverte
   }
+
 
   return (
     <div className="modal-overlay">

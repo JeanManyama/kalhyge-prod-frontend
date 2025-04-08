@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './LoginSignupForm.scss'; // Import des styles SCSS
@@ -13,7 +13,20 @@ const LoginSignupForm = () => {
     firstname: '',
   });
   const [error, setError] = useState<string | null>(null);
+  const [succesMessage, setSuccessMessage] = useState<string | null>(null)
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (succesMessage || error) {
+      const timer = setTimeout(() => {
+        setSuccessMessage(null);
+        setError(null);
+      }, 4000); // 4 secondes
+  
+      return () => clearTimeout(timer);
+    }
+  }, [succesMessage, error]);
+  
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -50,6 +63,13 @@ const LoginSignupForm = () => {
         });
 
         console.log('Compte créé avec succès:', response.data);
+        setSuccessMessage("Compte crée avec succès");
+        setFormData((prev)=>({
+          ...prev,
+          password : '',
+          firstname : '',
+
+        }));
         setIsLoginMode(true);
       }
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -98,6 +118,7 @@ const LoginSignupForm = () => {
         </button>
       </form>
       {error && <p className="error">{error}</p>}
+      {succesMessage && <p className='succes'>{succesMessage}</p>}
       {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button
         onClick={() => setIsLoginMode(!isLoginMode)}

@@ -426,6 +426,7 @@ const handleLogout = async () => {
      
         <ModaleUpdatePassword 
         isOpen={isPasswordModalOpen}
+        fetchUserInfo = {fetchUserInfo}
         onClose={closePasswordModal}
         onSave={handleSavePassword}/>
         <Prod productions = {production} />
