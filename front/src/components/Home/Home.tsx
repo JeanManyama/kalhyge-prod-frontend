@@ -84,6 +84,8 @@ function Home() {
   
     if (!accessToken) {
       setError('Token manquant');
+      // Rediriger vers la page de connexion
+      navigate("/");
       return;
     }
   

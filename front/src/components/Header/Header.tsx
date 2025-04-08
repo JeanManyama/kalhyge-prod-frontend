@@ -92,57 +92,8 @@ function Header({
     // seconds,
   } = useTimer(); // Utiliser le contexte du minuteur
 
-  // Exemple d'utilisation de localStorage pour persister l'état du timer
-
-//   useEffect(() => {
-//   // Vérifier si un timer est déjà en cours dans le localStorage
-//   const savedFormattedTime = localStorage.getItem('formattedTime');
-//   const savedStart = localStorage.getItem('start') === 'true';  // Vérifie si le timer était démarré
-
-//   if (savedFormattedTime && savedStart) {
-//     setFormattedTime(savedFormattedTime);
-//     setStart(true); // Démarre le timer
-//   } else {
-//     setFormattedTime("00:00:00");
-//     setStart(false); // Assurez-vous que le timer commence arrêté
-//   }
-// }, []);
-
-// // Lorsque l'état du timer change, on le sauvegarde dans localStorage
-// useEffect(() => {
-//   if (start) {
-//     localStorage.setItem('formattedTime', formattedTime);
-//     localStorage.setItem('start', 'true');
-//   } else {
-//     localStorage.setItem('formattedTime', "00:00:00");
-//     localStorage.setItem('start', 'false');
-//   }
-// }, [formattedTime, start]);
-
-  
-
-
-
-
-
 
   const [modaleConfirme, setModaleConfirme] = useState(false);
-
-  // Fonction pour arrêter le timer
-  // const handleStopTimer = async () => {
-  //   try {
-  //     const response = await axios.patch('http://localhost:3000/timers/stop');
-  //     console.log('Timer arrêté avec succès', response.data);
-  //     // setStop(true);           // Arrêter le timer localement
-  //     // setStart(false);         // Mettre à jour l'état de démarrage
-  //     setFormattedTime("00:00:00"); // Réinitialiser le timer
-  //     setStart(false); // Arrêter le timer
-  //     setStop(true); // Arrêter le timer
-  //   } catch (error) {
-  //     console.error('Erreur lors de l\'arrêt du timer', error);
-  //   }
-  // };
-
 
   // Fonction pour ouvrir la modale de confirmation
     const handleStop = () => {
