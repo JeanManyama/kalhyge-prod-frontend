@@ -404,9 +404,17 @@ function ModaleInit({
       if (!userId) {
         return null;
       }
-
+      const accessToken = localStorage.getItem('accessToken');
+      const csrfToken = localStorage.getItem('csrfToken');
       const response = await axios.post(`${apiUrl}/timers`, {
         user_id: userId, durationTimer : timeInSeconds
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'x-csrf-token': csrfToken,
+          'Content-Type': 'application/json',
+        },
       });
 
       return response.data;

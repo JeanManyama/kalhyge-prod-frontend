@@ -62,7 +62,15 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
   useEffect(() => {
     const fetchTimerStateFromBackend = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/timers/active`);
+        const accessToken = localStorage.getItem('accessToken');
+        const csrfToken = localStorage.getItem('csrfToken');
+        const response = await axios.get(`${apiUrl}/timers/active` , {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'x-csrf-token': csrfToken,
+            'Content-Type': 'application/json',
+          },
+        });
         const timer = response.data;
 
         if (timer?.time_begin && timer?.duration) {
@@ -257,8 +265,15 @@ useEffect(() => {
 
   const fetchTodayTimer = async () => {
     try {
-     
-      const response = await axios.get(`${apiUrl}/timers/today`);
+      const accessToken = localStorage.getItem('accessToken');
+      const csrfToken = localStorage.getItem('csrfToken');
+      const response = await axios.get(`${apiUrl}/timers/today`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'x-csrf-token': csrfToken,
+          'Content-Type': 'application/json',
+        },
+      });
       // console.log("TIMER D'AUJOURD'HUI ---------------------------",response.data.timerId);
       // Mise à jours de la valeur du timer d'aujourd'hui
       setTimerId(response.data.timerId);
