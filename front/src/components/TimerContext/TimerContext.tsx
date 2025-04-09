@@ -159,7 +159,7 @@ useEffect(() => {
   const handleStopTimer = async () => {
     try {
       const response = await axios.patch(`${apiUrl}/timers/update-and-stop`);
-      // console.log('Objectif historique mis à jour et timer arrêté avec succès', response.data);
+      console.log(response.status);
       // setStop(true);           // Arrêter le timer localement
       // setStart(false);         // Mettre à jour l'état de démarrage
       setFormattedTime("00:00:00"); // Réinitialiser le timer

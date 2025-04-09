@@ -342,7 +342,7 @@ const updateMachine = async (
       }
     );
 
-    // console.log("Machine mise à jour avec succès :", response.data);
+    console.log(response.status);
 
   // Une fois la mise à jour effectuée, mettez à jour la productionss
     // Mettez à jour l'état local avec la nouvelle machine
