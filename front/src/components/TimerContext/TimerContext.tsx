@@ -159,7 +159,7 @@ useEffect(() => {
   const handleStopTimer = async () => {
     try {
       const response = await axios.patch(`${apiUrl}/timers/update-and-stop`);
-      console.log('Objectif historique mis à jour et timer arrêté avec succès', response.data);
+      // console.log('Objectif historique mis à jour et timer arrêté avec succès', response.data);
       // setStop(true);           // Arrêter le timer localement
       // setStart(false);         // Mettre à jour l'état de démarrage
       setFormattedTime("00:00:00"); // Réinitialiser le timer
@@ -201,7 +201,7 @@ useEffect(() => {
       // console.log("TIMER ID DANS CONTEXT Avant d'envoyé au back -----------------------------",timerId);
       const response = await fetch(`${apiUrl}/productions/${timerId}`);
       const data = await response.json();  
-      console.log(data);
+      // console.log(data);
       setArticles(data.data.articles); 
       // console.log("ARTICLES DANS CONTEXT A -----------------------------",articles);
       setMachines(data.data.machines);

@@ -48,9 +48,17 @@ function AdminUsers({
   
   const fetchUsers = async () => {
     try {
+      const accessToken = localStorage.getItem('accessToken');
+      const csrfToken = localStorage.getItem('csrfToken');
       // console.log("Chargement des utilisateurs...----------------------------------------");
-      const response = await fetch(`${apiUrl}/users/admin`); // Remplacez l'URL par celle correspondant à votre API.
-      const data = await response.json();
+      const response = await axios.get(`${apiUrl}/users/admin` , {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'x-csrf-token': csrfToken,
+          'Content-Type': 'application/json',
+        },
+      }); // Remplacez l'URL par celle correspondant à votre API.
+      const data = response.data;
   
       if (data && Array.isArray(data)) {
         // console.log("Données des utilisateurs récupérées :", data);

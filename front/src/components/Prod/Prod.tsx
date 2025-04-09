@@ -34,8 +34,8 @@ const machineCapacities: Record<string, number> = {
   const calculateProbability = (article : ArticleProduction) => {
     const { objective, total_quantity_valid, machines } = article;
 
-    console.log("OBJECTIVE------------", objective);
-    console.log("Quantité valid est ------------", total_quantity_valid);
+    // console.log("OBJECTIVE------------", objective);
+    // console.log("Quantité valid est ------------", total_quantity_valid);
 
     if(objective===0 && total_quantity_valid===0){
       return 0;
@@ -65,8 +65,8 @@ const machineCapacities: Record<string, number> = {
 
   //  console.log("Quantité restant à produire est ------------", quantityRemaining);
   // Probabilité d'atteindre l'objectif
-  console.log("Valeur de totalCapacityInTimeRemaining est ---- :", totalCapacityInTimeRemaining)
-  console.log("Valeur de quantityRemaining est ---- :", quantityRemaining)
+  // console.log("Valeur de totalCapacityInTimeRemaining est ---- :", totalCapacityInTimeRemaining)
+  // console.log("Valeur de quantityRemaining est ---- :", quantityRemaining)
   const probability = Math.min(
     Math.round((totalCapacityInTimeRemaining / quantityRemaining) * 100),
     100
@@ -86,7 +86,7 @@ const machineCapacities: Record<string, number> = {
         // console.log("OBJECTIF est :----", article.objective)
             // Calculer la probabilité d'atteindre l'objectif
         const probability =calculateProbability(article);
-        console.log("La probabilité retournée est ", probability)
+        // console.log("La probabilité retournée est ", probability)
 
         // Calculer les articles restants
         const articlesRemaining = Math.max(0, article.objective - (article.total_quantity_valid))

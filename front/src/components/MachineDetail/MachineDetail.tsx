@@ -47,7 +47,7 @@ const MachineDetail = ({  openMachineDetail, setOpenMachineDetail }: MachineDeta
 
   const getImageForMachine = (machineName: string): string | null => {
     const normalizedMachineName = machineName.toLowerCase();
-    console.log("Nom de la machine normalisé :", normalizedMachineName);
+    // console.log("Nom de la machine normalisé :", normalizedMachineName);
     const imageKey = `../../assets/${normalizedMachineName}.png`;
     if (!images[imageKey]) {
       console.error(`Image introuvable pour la clé : ${imageKey}`);
@@ -69,7 +69,7 @@ const MachineDetail = ({  openMachineDetail, setOpenMachineDetail }: MachineDeta
           timer_id: timerId,  // Ajoutez le timerId ici
         }
       );
-      console.log("Réponse du serveurr :", response.data);
+      // console.log("Réponse du serveurr :", response.data);
       // Vous pouvez également récupérer les données envoyées ou la confirmation du serveur
       setMachineData(response.data);
     } catch (err) {

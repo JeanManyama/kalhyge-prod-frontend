@@ -291,7 +291,7 @@ function ModaleInit({
         newProductionData = [];
         filteredProductionData = [];
         finalFilteredProductionData = [];
-        console.log("Variables réinitialisées :", newProductionData, filteredProductionData, finalFilteredProductionData);
+        // console.log("Variables réinitialisées :", newProductionData, filteredProductionData, finalFilteredProductionData);
 
     } catch (error) {
       setMessageModal("Erreur inconnue lors de la création du timer.");

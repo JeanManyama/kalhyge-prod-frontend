@@ -342,7 +342,7 @@ const updateMachine = async (
       }
     );
 
-    console.log("Machine mise à jour avec succès :", response.data);
+    // console.log("Machine mise à jour avec succès :", response.data);
 
   // Une fois la mise à jour effectuée, mettez à jour la productionss
     // Mettez à jour l'état local avec la nouvelle machine
@@ -391,7 +391,7 @@ const deleteProduction = async (productionId: number) => {
     
     // Vérification du succès de la suppression
     if (response.status === 204) {
-      console.log("Production supprimée avec succès.");
+      // console.log("Production supprimée avec succès.");
       
       // Mettre à jour la liste des productions pour exclure la production supprimée
       setProductionss((prevProductions) =>
@@ -551,7 +551,7 @@ const articleImage = articleData ? getImageForArticle(articleData.nameArticle.na
                     <form className="item-form" 
                         onSubmit={(e) => { 
                         e.preventDefault(); 
-                        console.log("Mise à jour quantité", production.id, editingQuantities[production.id] ?? newQuantity);
+                        // console.log("Mise à jour quantité", production.id, editingQuantities[production.id] ?? newQuantity);
                         if (editingMachineNewId) {
                           updateMachine(production.id, editingMachineNewId, nameArticle.id);
                         } else {

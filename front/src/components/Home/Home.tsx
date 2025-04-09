@@ -83,7 +83,7 @@ function Home() {
     const csrfToken = localStorage.getItem('csrfToken');
   
     if (!accessToken) {
-      setError('Token manquant');
+      setError('Erreur');
       // Rediriger vers la page de connexion
       navigate("/");
       return;
@@ -137,7 +137,7 @@ function Home() {
       // console.log("TIMER ID DANS CONTEXT Avant d'envoyé au back -----------------------------",timerId);
       const response = await fetch(`${apiUrl}/productions/${timerId}`);
       const data = await response.json();  
-      console.log(data);
+      // console.log(data);
       setArticles(data.data.articles); 
       // console.log("ARTICLES DANS HOME A -----------------------------",articles);
       setMachines(data.data.machines);

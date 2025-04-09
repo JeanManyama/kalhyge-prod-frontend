@@ -72,7 +72,7 @@ const [rejects, setRejects] = useState<Reject[]>([]);
     if (openRejet) {
       axios.get(`${apiUrl}/productions/rejet/${timerId}`) // L'URL de votre API backend
         .then((response) => {
-          console.log("l'Objet Rejets récupérés a ----------:", response.data);
+          // console.log("l'Objet Rejets récupérés a ----------:", response.data);
           setRejects(response.data.rejects);
 
           // Charger les articles et les machines
@@ -152,7 +152,7 @@ const [rejects, setRejects] = useState<Reject[]>([]);
       };
     }
 
-    console.log("requestBody envoyé est -------------------", requestBody);
+    // console.log("requestBody envoyé est -------------------", requestBody);
     const response = await axios.patch(`${apiUrl}/productions/rejet`, requestBody);
 
     if (response.status === 204) {
@@ -167,7 +167,7 @@ const [rejects, setRejects] = useState<Reject[]>([]);
       return;
     }
 
-    console.log(`Modification réussie pour l'action ${payload.actionType} sur le rejet ${id}:`, response.data);
+    // console.log(`Modification réussie pour l'action ${payload.actionType} sur le rejet ${id}:`, response.data);
 
     // Mise à jour des rejets après modification
     setRejects((prevRejects) =>
@@ -256,9 +256,9 @@ const cancelDelete = () => {
   const handleSaveReject = async (event: React.FormEvent) => {
     event.preventDefault();
   
-    console.log("machineId est -------------", machineId);
-    console.log("articleId est -------------", articleId);
-    console.log("quantity est -------------", quantity);
+    // console.log("machineId est -------------", machineId);
+    // console.log("articleId est -------------", articleId);
+    // console.log("quantity est -------------", quantity);
   
     // Vérification des champs requis
     if (!quantity || !articleId || !machineId) {
@@ -276,7 +276,7 @@ const cancelDelete = () => {
         timer_id: timerId,
       });
   
-      console.log("Rejet enregistré avec succès:", response.data);
+      // console.log("Rejet enregistré avec succès:", response.data);
   
       const createdProduction = response.data;
   

@@ -93,7 +93,7 @@ function Historique ({
         setFilteredArticles(response.data.data.articles);
         setFilteredMachines(response.data.data.machines);
         setProductionTime(response.data.data.productionTime || null);
-        console.log("lEMPS DE PROD------------------:",response.data.data.productionTime);
+        // console.log("lEMPS DE PROD------------------:",response.data.data.productionTime);
       } else {
         setError('Erreur lors de la récupération des données.');
       }
