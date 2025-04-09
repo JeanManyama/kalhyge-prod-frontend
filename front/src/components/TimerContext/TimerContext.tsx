@@ -198,9 +198,18 @@ useEffect(() => {
 
     const fetchData = useCallback(async (timerId: number) => {
     try {
+      const accessToken = localStorage.getItem('accessToken');
+      const csrfToken = localStorage.getItem('csrfToken');
       // console.log("TIMER ID DANS CONTEXT Avant d'envoyé au back -----------------------------",timerId);
-      const response = await fetch(`${apiUrl}/productions/${timerId}`);
-      const data = await response.json();  
+      const response = await axios.get(`${apiUrl}/productions/${timerId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'x-csrf-token': csrfToken,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data =  response.data;  
       // console.log(data);
       setArticles(data.data.articles); 
       // console.log("ARTICLES DANS CONTEXT A -----------------------------",articles);
