@@ -231,7 +231,8 @@ const LoginSignupForm = () => {
           email: formData.email,
           password: formData.password,
         });
-        setSuccessMessage(`Compte créé avec succès, ${response.data.firstname}`);
+        console.log(response.data.firstname);
+        setSuccessMessage(`Compte créé avec succès`);
         setFormData({ email: '', password: '', firstname: '', code: '' });
         setIsLoginMode(true);
       }
