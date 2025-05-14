@@ -232,7 +232,7 @@ const LoginSignupForm = () => {
           password: formData.password,
         });
         console.log(response.data.firstname);
-        setSuccessMessage(`Compte créé avec succès`);
+        setSuccessMessage('Compte créé avec succès');
         setFormData({ email: '', password: '', firstname: '', code: '' });
         setIsLoginMode(true);
       }
