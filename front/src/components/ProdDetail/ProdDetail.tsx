@@ -209,11 +209,9 @@ function ProdDetail({
       return;
     }
 
-   
     if (
       !newQuantity ||
-      Number.
-      isNaN(Number(newQuantity)) ||
+      Number.isNaN(Number(newQuantity)) ||
       Number(newQuantity) <= 0
     ) {
       setError("Veuillez entrer une quantité valide.");

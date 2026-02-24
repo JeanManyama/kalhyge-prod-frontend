@@ -127,7 +127,7 @@ function Historique({ setOpenHistorique, openHistorique }: HistoriqueProps) {
         const axiosError = error as AxiosError<{ message?: string }>;
         setError(axiosError.response?.data.message || "Erreur inconnue.");
       } else {
-        // Une autre erreur, non liée à Axios
+        // Une autre erreurrrr, non liée à Axios
         setError("Une erreur s’est produite. Veuillez réessayer.");
       }
     } finally {
