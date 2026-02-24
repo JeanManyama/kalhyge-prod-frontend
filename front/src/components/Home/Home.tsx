@@ -159,7 +159,7 @@ function Home() {
   };
 
 // FETCH DATA POUR UN ARTICLE
-// Fonction pour fermer le modal et revenirrr à l'URL de base
+// Fonction pour fermer le modal et revenirrrr à l'URL de base
 const [articleData, setarticleData] = useState<ProductionResponse | null>(null);
 
 	// Réinitialise tous les modals
