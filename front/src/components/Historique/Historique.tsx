@@ -155,18 +155,21 @@ function Historique({ setOpenHistorique, openHistorique }: HistoriqueProps) {
         <ModalContent>
           <div className="historique-content">
             <div className="search-date">
-              {/* biome-ignore lint/a11y/noLabelWithoutControl: input is correctly associated with label */}
-              <label>Date: {"  "} </label>
+              <label htmlFor="search-date">Date: {"  "} </label>
               <Input
+                id="search-date"
                 type="date"
                 value={searchDate}
                 onChange={handleDateChange}
                 placeholder="Sélectionnez une date"
               />
               {/* Sélecteur de période */}
-              {/* biome-ignore lint/a11y/noLabelWithoutControl: input is correctly associated with label */}
-              <label style={{ marginLeft: "10px" }}>Période:</label>
+
+              <label htmlFor="period" style={{ marginLeft: "10px" }}>
+                Période:
+              </label>
               <select
+                id="period"
                 value={period}
                 onChange={(e) => setPeriod(e.target.value)} // Fonction pour gérer la sélection
                 style={{ marginLeft: "10px" }}
