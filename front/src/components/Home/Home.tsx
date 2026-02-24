@@ -176,7 +176,7 @@ const [articleData, setarticleData] = useState<ProductionResponse | null>(null);
     // fetchData(timerId? timerId : 0);
 	};
 
-// Fermeture modale de la Production
+// Fermeturee modale de la Production
 const closeProdDetail = () => {
   resetAllModals()
   setOpenProdDetail(false);
