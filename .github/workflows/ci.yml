@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: front
+        working-directory: /front
 
     steps:
       - name: Checkout repository
