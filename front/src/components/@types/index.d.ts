@@ -1,6 +1,5 @@
 // objet qui correspond à une recette
 
-
 // /@types/index.d.ts
 export interface Machine {
   id: number;
@@ -10,16 +9,14 @@ export interface Machine {
 export interface Article {
   id: number;
   name: string;
-  initial_quantity: number ;
-  objective: number ;
+  initial_quantity: number;
+  objective: number;
 }
-
-
 
 // Interface de données pour la production recuperée
 //---------------------------------------------------
 interface ArticleNameAndId {
-  id : number;
+  id: number;
   name: string;
 }
 
@@ -27,14 +24,14 @@ interface MachinesProd {
   id: number;
   name: string;
 }
-interface MachineProduct{
+interface MachineProduct {
   name: string;
 }
 interface ProductionData {
   id: number;
-  created_at: Date; 
+  created_at: Date;
   quantity_product_aff: number;
-  machines: MachinesProd | null; 
+  machines: MachinesProd | null;
 }
 
 interface MachineData {
@@ -44,10 +41,10 @@ interface MachineData {
 
 export interface ProductionResponse {
   status: string; //: "success"
-  nameArticle: ArticleNameAndId ; //: {name: "Draps Cliniques"}v nom de l'article
-  machinesProduct : MachineProduct[]; // Liste des machines qui produisent l'article
+  nameArticle: ArticleNameAndId; //: {name: "Draps Cliniques"}v nom de l'article
+  machinesProduct: MachineProduct[]; // Liste des machines qui produisent l'article
   productions: ProductionData[]; // Liste des productions avec des heures
-  machinesForSelec : MachineData[]; // Liste des machines disponibles
+  machinesForSelec: MachineData[]; // Liste des machines disponibles
 }
 //---------------------------------------------------
 
@@ -59,21 +56,20 @@ export interface ProductionResponse {
 // }
 
 interface Machine {
-  id: number; 
+  id: number;
   name: string;
   total_quantity: number[];
-  total_quantity_reject: number[]; 
+  total_quantity_reject: number[];
 }
 
 export interface ArticleProduction {
   id: number;
-  machines: Machine[]; 
+  machines: Machine[];
   name: string;
   objective: number;
-  total_quantity_all: number; 
+  total_quantity_all: number;
   total_quantity_reject_all: number;
-  total_quantity_valid: number; 
-  
+  total_quantity_valid: number;
 }
 //---------------------------------------------------
 // Interface pour UserInfo
@@ -85,9 +81,9 @@ interface UserInfo {
 
 // Interface pour le Timer
 interface Timer {
-  id: number;         // Identifiant
+  id: number; // Identifiant
   time_begin: Date; // Heure de début, au format "HH:mm:ss"
-  time_end?: string; 
-  date: string;       // Date au format "YYYY-MM-DD", par défaut la date actuelle
-  user_id: number;    
+  time_end?: string;
+  date: string; // Date au format "YYYY-MM-DD", par défaut la date actuelle
+  user_id: number;
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaTimes, FaCheck, FaClock, FaChartLine } from "react-icons/fa";
 import axios from "axios";
-import io from "socket.io-client"; 
+import io from "socket.io-client";
 import {
   Form,
   FormGroup,
@@ -16,10 +16,10 @@ import {
 } from "semantic-ui-react";
 import type { Article, Machine, Timer } from "../@types";
 import "./Modale.scss";
-import { useTimer } from '../TimerContext/TimerContext'; // Importer le hook pour accéder au contexte
+import { useTimer } from "../TimerContext/TimerContext"; // Importer le hook pour accéder au contexte
 
 // Connexion au serveur WebSocket
-const socket = io(import.meta.env.VITE_API_URL); 
+const socket = io(import.meta.env.VITE_API_URL);
 
 // Définition de l'interface pour le type des objets dans le tableau de production
 interface ProductionData {
@@ -50,8 +50,15 @@ function ModaleInit({
   setOpenInitialisation,
   user_id,
 }: ModaleInitProps) {
-  const { setHours, setMinutes, setSeconds, setFormattedTime, setTimerId, setStart, setTimeBegin } = useTimer();
-
+  const {
+    setHours,
+    setMinutes,
+    setSeconds,
+    setFormattedTime,
+    setTimerId,
+    setStart,
+    setTimeBegin,
+  } = useTimer();
 
   const [inputs, setInputs] = useState<Record<string, string>>({});
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -61,7 +68,7 @@ function ModaleInit({
   // const [productionData, setProductionData] = useState<ProductionData[]>([]);
   const apiUrl = import.meta.env.VITE_API_URL;
 
-  let [newTimer] =useState< Timer | null>(null);
+  let [newTimer] = useState<Timer | null>(null);
 
   useEffect(() => {
     if (articles && machines) {
@@ -120,47 +127,51 @@ function ModaleInit({
   };
 
   // Lancement du minuteur
- 
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-// console.log("ON EST LAAAAAA--------------------------------------- : ", );
+    // console.log("ON EST LAAAAAA--------------------------------------- : ", );
     if (!validateForm()) {
       setMessageModal(
-        "Erreur sur le formulaire. Veuillez remplir tous les champs correctement."
+        "Erreur sur le formulaire. Veuillez remplir tous les champs correctement.",
       );
       setIsSuccess(false);
       setShowErrorModal(true);
       return;
     }
 
-    const productionHour = Number.parseInt(inputs["production-hour"] || "0", 10);
-    const productionMinute = Number.parseInt(inputs["production-minute"] || "0",10);
+    const productionHour = Number.parseInt(
+      inputs["production-hour"] || "0",
+      10,
+    );
+    const productionMinute = Number.parseInt(
+      inputs["production-minute"] || "0",
+      10,
+    );
 
     // Calcul du temps total en secondes
-   timeInSeconds =  productionHour * 3600 + productionMinute * 60;
+    timeInSeconds = productionHour * 3600 + productionMinute * 60;
 
-  // console.log("Le temps en secondes est-------------------------------------------------------------------- : ", timeInSeconds);
+    // console.log("Le temps en secondes est-------------------------------------------------------------------- : ", timeInSeconds);
 
-  // Conversion en heures, minutes, secondes
-  const calculatedHours = Math.floor(timeInSeconds / 3600);
-  const calculatedMinutes = Math.floor((timeInSeconds % 3600) / 60);
-  const calculatedSeconds = timeInSeconds % 60;
+    // Conversion en heures, minutes, secondes
+    const calculatedHours = Math.floor(timeInSeconds / 3600);
+    const calculatedMinutes = Math.floor((timeInSeconds % 3600) / 60);
+    const calculatedSeconds = timeInSeconds % 60;
 
-  if (productionHour === 0 && productionMinute === 0) {
-    setMessageModal("Erreur : le temps ne peut pas être nul.");
-    setIsSuccess(false);
-    setShowErrorModal(true);
-    return;
-  }
+    if (productionHour === 0 && productionMinute === 0) {
+      setMessageModal("Erreur : le temps ne peut pas être nul.");
+      setIsSuccess(false);
+      setShowErrorModal(true);
+      return;
+    }
 
+    // Formater le temps
+    const formattedTime = `${calculatedHours.toString().padStart(2, "0")}:${calculatedMinutes
+      .toString()
+      .padStart(2, "0")}:${calculatedSeconds.toString().padStart(2, "0")}`;
 
-  // Formater le temps
-  const formattedTime = `${calculatedHours.toString().padStart(2, "0")}:${calculatedMinutes
-    .toString()
-    .padStart(2, "0")}:${calculatedSeconds.toString().padStart(2, "0")}`;
-
-  setFormattedTime(formattedTime);
-
+    setFormattedTime(formattedTime);
 
     const hasZeroObjective = articles?.some((article) => {
       const articleObjective = inputs[`${article.id}-objectif`];
@@ -168,7 +179,9 @@ function ModaleInit({
     });
 
     if (hasZeroObjective) {
-      setMessageModal("Erreur : Il y a au moins un champ objectif qui est à 0.");
+      setMessageModal(
+        "Erreur : Il y a au moins un champ objectif qui est à 0.",
+      );
       setIsSuccess(false);
       setShowErrorModal(true);
       return;
@@ -188,39 +201,42 @@ function ModaleInit({
             quantity_product_aff: Number.parseInt(initialQuantity),
             objective: Number.parseInt(articleObjective),
           });
-          
         }
       });
-      
     });
 
     // console.log(   "Le Tableau avant tri: --------------------------------",newProductionData);
 
     let filteredProductionData = Object.values(
-      newProductionData.reduce<Record<number, ProductionData[]>>((acc, current) => {
-        // Regrouper par `articleId`
-        if (!acc[current.articleId]) {
-          acc[current.articleId] = [];
-        }
-        acc[current.articleId].push(current);
-        return acc;
-      }, {})
+      newProductionData.reduce<Record<number, ProductionData[]>>(
+        (acc, current) => {
+          // Regrouper par `articleId`
+          if (!acc[current.articleId]) {
+            acc[current.articleId] = [];
+          }
+          acc[current.articleId].push(current);
+          return acc;
+        },
+        {},
+      ),
     ).flatMap((group) => {
       // Pour chaque groupe (`articleId`), filtrer les objets
-      const withPositiveQuantity = group.filter((item) => item.quantity_product_aff > 0);
+      const withPositiveQuantity = group.filter(
+        (item) => item.quantity_product_aff > 0,
+      );
       return withPositiveQuantity.length > 0
         ? withPositiveQuantity // Garder tous ceux avec `quantity_product_aff > 0`
         : [group[0]]; // Si tous sont `0`, garder un seul (par exemple, le premier)
     });
-    
+
     const isAnyInitialQuantityGreaterThanOrEqualToObjective =
       newProductionData.some(
-        (item) => item.quantity_product_aff >= item.objective
+        (item) => item.quantity_product_aff >= item.objective,
       );
 
     if (isAnyInitialQuantityGreaterThanOrEqualToObjective) {
       setMessageModal(
-        "Erreur : Une quantité initiale est supérieure ou égale à l'objectif."
+        "Erreur : Une quantité initiale est supérieure ou égale à l'objectif.",
       );
       setIsSuccess(false);
       setShowErrorModal(true);
@@ -228,101 +244,106 @@ function ModaleInit({
     }
 
     try {
-            
-          //----------------------------------------------------------------------
-            // Iserer le timer
-            newTimer = await createTimer(user_id);
-            if (!newTimer) {
-              setMessageModal("Erreur : Le timer n'a pas pu être créé.");
-              setIsSuccess(false);
-              setShowErrorModal(true);
-              return;
-            }
-      
-            // Mettre à jour les états du contexte Timer
-            setHours(calculatedHours);
-            setMinutes(calculatedMinutes);
-            setSeconds(calculatedSeconds);
-      
-            const formattedTime = `${calculatedHours.toString().padStart(2, "0")}:${calculatedMinutes.toString().padStart(2, "0")}:${calculatedSeconds.toString().padStart(2, "0")}`;
-            setFormattedTime(formattedTime);
-      
-            setTimeBegin(new Date(newTimer.time_begin));
-            setTimerId(newTimer.id);
-            setStart(true); // Démarre directement le timer
-      
-            socket.emit("startTimer", { timerId: newTimer.id, timeBegin: newTimer.time_begin });
-          //----------------------------------------------------------------------      
+      //----------------------------------------------------------------------
+      // Iserer le timer
+      newTimer = await createTimer(user_id);
+      if (!newTimer) {
+        setMessageModal("Erreur : Le timer n'a pas pu être créé.");
+        setIsSuccess(false);
+        setShowErrorModal(true);
+        return;
+      }
 
-          // Iserer les objectifs des articles
-        //  console.log("NOUS SOMMES AVANT OBJECTIFS--------------------------------------------- :", filteredProductionData);
-          await Promise.all(
-            filteredProductionData.map((item) =>
-              handleUpdateObjective(item.articleId, item.objective)
-            )
-          );
+      // Mettre à jour les états du contexte Timer
+      setHours(calculatedHours);
+      setMinutes(calculatedMinutes);
+      setSeconds(calculatedSeconds);
 
-    
-          handleSuccess(); // Appelle la gestion du succès
-          // sTableau filtré ---------------------------etOpenInitialisation(false)
-          // console.log(" :", filteredProductionData);
-            // Insertion des données de production avant reinitialisation
+      const formattedTime = `${calculatedHours.toString().padStart(2, "0")}:${calculatedMinutes.toString().padStart(2, "0")}:${calculatedSeconds.toString().padStart(2, "0")}`;
+      setFormattedTime(formattedTime);
 
-              // ICI INSERER LES DONNEES DE PRODUCTION QUI ONT LES QUANTITES SUPPERIEURES A 0  !!!
-            // Nouveau tri : garder uniquement ceux avec `quantity_product_aff > 0`
-        let finalFilteredProductionData = filteredProductionData.filter(
-          (item) => item.quantity_product_aff > 0
-        );
+      setTimeBegin(new Date(newTimer.time_begin));
+      setTimerId(newTimer.id);
+      setStart(true); // Démarre directement le timer
 
-        // Insertion des données de production après le nouveau tri
-        // console.log("Tableau final filtré --------------------------------------------- :", finalFilteredProductionData);
-        await Promise.all(
-          finalFilteredProductionData.map((item) =>
-            handleUpdateProduction(
-              item.articleId,
-              item.machine_id,
-              item.quantity_product_aff,
-              newTimer?.id || 0
-            )
-          )
-        );
+      socket.emit("startTimer", {
+        timerId: newTimer.id,
+        timeBegin: newTimer.time_begin,
+      });
+      //----------------------------------------------------------------------
 
-        // Réinitialisation des variables
-        newProductionData = [];
-        filteredProductionData = [];
-        finalFilteredProductionData = [];
-        // console.log("Variables réinitialisées :", newProductionData, filteredProductionData, finalFilteredProductionData);
+      // Iserer les objectifs des articles
+      //  console.log("NOUS SOMMES AVANT OBJECTIFS--------------------------------------------- :", filteredProductionData);
+      await Promise.all(
+        filteredProductionData.map((item) =>
+          handleUpdateObjective(item.articleId, item.objective),
+        ),
+      );
 
+      handleSuccess(); // Appelle la gestion du succès
+      // sTableau filtré ---------------------------etOpenInitialisation(false)
+      // console.log(" :", filteredProductionData);
+      // Insertion des données de production avant reinitialisation
+
+      // ICI INSERER LES DONNEES DE PRODUCTION QUI ONT LES QUANTITES SUPPERIEURES A 0  !!!
+      // Nouveau tri : garder uniquement ceux avec `quantity_product_aff > 0`
+      let finalFilteredProductionData = filteredProductionData.filter(
+        (item) => item.quantity_product_aff > 0,
+      );
+
+      // Insertion des données de production après le nouveau tri
+      // console.log("Tableau final filtré --------------------------------------------- :", finalFilteredProductionData);
+      await Promise.all(
+        finalFilteredProductionData.map((item) =>
+          handleUpdateProduction(
+            item.articleId,
+            item.machine_id,
+            item.quantity_product_aff,
+            newTimer?.id || 0,
+          ),
+        ),
+      );
+
+      // Réinitialisation des variables
+      newProductionData = [];
+      filteredProductionData = [];
+      finalFilteredProductionData = [];
+      // console.log("Variables réinitialisées :", newProductionData, filteredProductionData, finalFilteredProductionData);
     } catch (error) {
       setMessageModal("Erreur inconnue lors de la création du timer.");
       setIsSuccess(false);
       setShowErrorModal(true);
     }
-    
   };
-  
+
   // Insertion des données initiales de production
-  const handleUpdateProduction = async (articleId: number, machineId: number, quantity : number, timerId:number) => {
-  
+  const handleUpdateProduction = async (
+    articleId: number,
+    machineId: number,
+    quantity: number,
+    timerId: number,
+  ) => {
     if (!quantity || !machineId || !articleId || !timerId) {
       setMessageModal(
-        "Erreur sur le formulaire. Veuillez remplir tous les champs correctement."
+        "Erreur sur le formulaire. Veuillez remplir tous les champs correctement.",
       );
       setIsSuccess(false);
       setShowErrorModal(true);
       return;
     }
     try {
-      const response = await axios.post(`${apiUrl}/productions/articles/${articleId}`,
-      {
-        machine_id: machineId,
-        quantity_product_aff: quantity,
-        timer_id: timerId,
-      });
-  
+      const response = await axios.post(
+        `${apiUrl}/productions/articles/${articleId}`,
+        {
+          machine_id: machineId,
+          quantity_product_aff: quantity,
+          timer_id: timerId,
+        },
+      );
+
       const initProd = response.data;
-      
-      if(!initProd) {
+
+      if (!initProd) {
         setMessageModal("Erreur lors de l'initialisation des données.");
         setIsSuccess(false);
         setShowErrorModal(true);
@@ -340,7 +361,6 @@ function ModaleInit({
   };
   //insertion des objectifs des articles
   const handleUpdateObjective = async (id: number, objective: number) => {
-  
     if (!objective || !id) {
       setMessageModal("L'objectif ne peut pas être vide ou nul.");
       setIsSuccess(false);
@@ -356,10 +376,10 @@ function ModaleInit({
         id,
         objective: objectiveEquipe,
       });
-  
+
       const updatedArticle = response.data;
-      
-      if(!updatedArticle) {
+
+      if (!updatedArticle) {
         setMessageModal("Erreur lors de la modification de l'objectif.");
         setIsSuccess(false);
         setShowErrorModal(true);
@@ -376,7 +396,7 @@ function ModaleInit({
       return null;
     }
   };
-  
+
   // Quand tout se passe bien
   const handleSuccess = () => {
     // if (newTimer) {
@@ -395,27 +415,31 @@ function ModaleInit({
       setOpenInitialisation(false);
     }, 2000);
   };
-  
+
   // Insertion deu Timer
   const createTimer = async (
-    userId: number | undefined
+    userId: number | undefined,
   ): Promise<Timer | null> => {
     try {
       if (!userId) {
         return null;
       }
-      const accessToken = localStorage.getItem('accessToken');
-      const csrfToken = localStorage.getItem('csrfToken');
-      const response = await axios.post(`${apiUrl}/timers`, {
-        user_id: userId, durationTimer : timeInSeconds
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'x-csrf-token': csrfToken,
-          'Content-Type': 'application/json',
+      const accessToken = localStorage.getItem("accessToken");
+      const csrfToken = localStorage.getItem("csrfToken");
+      const response = await axios.post(
+        `${apiUrl}/timers`,
+        {
+          user_id: userId,
+          durationTimer: timeInSeconds,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "x-csrf-token": csrfToken,
+            "Content-Type": "application/json",
+          },
+        },
+      );
 
       return response.data;
     } catch (error) {
@@ -448,54 +472,69 @@ function ModaleInit({
                   onSubmit={handleSubmit}
                 >
                   {articles?.map((article) => (
-                    <div key={article.id} className="border-b border-gray-300 pb-4 mb-6">
+                    <div
+                      key={article.id}
+                      className="border-b border-gray-300 pb-4 mb-6"
+                    >
                       <h4 className="text-xl font-semibold text-gray-800 mb-4">
                         {article.name.toUpperCase()}
                       </h4>
                       <div className="grid grid-cols-1 gap-4">
                         {machines?.map((machine) => (
-                          <FormGroup widths={3} key={machine.id} className=" items-center">
+                          <FormGroup
+                            widths={3}
+                            key={machine.id}
+                            className=" items-center"
+                          >
                             <p className="">
                               {capitalizeFirstLetter(machine.name)}
                             </p>
                             <FormInput
                               placeholder="Initiale"
-                              value={inputs[`${article.id}-${machine.id}-initial`] || ""}
+                              value={
+                                inputs[`${article.id}-${machine.id}-initial`] ||
+                                ""
+                              }
                               onChange={(e) =>
                                 handleInputChange(
                                   `${article.id}-${machine.id}-initial`,
-                                  e.target.value
+                                  e.target.value,
                                 )
                               }
                               style={{
-                                height: '20px',
-                                width: '100%',
-                                padding: '0px', // Réduire le padding à un minimum (ou mets 0 si nécessaire)
-                                margin: '0', // Supprimer les marges
-                                fontSize: '12px', // Diminue la taille de la police pour économiser de l'espace
-                           
-                            
-                                boxSizing: 'border-box',
-                                border: 'none'
+                                height: "20px",
+                                width: "100%",
+                                padding: "0px", // Réduire le padding à un minimum (ou mets 0 si nécessaire)
+                                margin: "0", // Supprimer les marges
+                                fontSize: "12px", // Diminue la taille de la police pour économiser de l'espace
 
+                                boxSizing: "border-box",
+                                border: "none",
                               }}
                             />
                           </FormGroup>
                         ))}
                       </div>
-                      <FormGroup widths={3} key={`objective-${article.id}`} className="centered-field mt-4">
+                      <FormGroup
+                        widths={3}
+                        key={`objective-${article.id}`}
+                        className="centered-field mt-4"
+                      >
                         <FormInput
                           placeholder="Objectif de la journée"
                           value={inputs[`${article.id}-objectif`] || ""}
                           onChange={(e) =>
-                            handleInputChange(`${article.id}-objectif`, e.target.value)
+                            handleInputChange(
+                              `${article.id}-objectif`,
+                              e.target.value,
+                            )
                           }
                           className="rounded-lg border-gray-300 shadow-sm focus:ring focus:ring-blue-300"
                         />
                       </FormGroup>
                     </div>
                   ))}
-  
+
                   <h4 className="text-xl font-semibold text-gray-800 mb-4">
                     <FaClock className="inline-block text-yellow-500 mr-2" />
                     Temps de production
@@ -546,7 +585,7 @@ function ModaleInit({
                       className="rounded-lg border-gray-300 shadow-sm focus:ring focus:ring-blue-300"
                     />
                   </FormGroup>
-  
+
                   <div className="flex justify-end space-x-4 mt-6">
                     <Button
                       color="red"
@@ -570,7 +609,7 @@ function ModaleInit({
           </ModalDescription>
         </ModalContent>
       </Modal>
-  
+
       {/* Modal dynamique */}
       <Modal
         size="small"
@@ -581,20 +620,24 @@ function ModaleInit({
         }}
       >
         <ModalHeader>{isSuccess ? "Succès" : "Erreur"}</ModalHeader>
-        <ModalContent className={isSuccess ? "success-modal-content" : "error-modal-content"}>
+        <ModalContent
+          className={
+            isSuccess ? "success-modal-content" : "error-modal-content"
+          }
+        >
           <p>{messageModal}</p>
         </ModalContent>
         <ModalActions>
-          <Button onClick={() => setShowErrorModal(false)} className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition duration-300">
+          <Button
+            onClick={() => setShowErrorModal(false)}
+            className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition duration-300"
+          >
             OK
           </Button>
         </ModalActions>
       </Modal>
     </>
   );
-
 }
 
 export default ModaleInit;
-
-

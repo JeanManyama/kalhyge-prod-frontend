@@ -1,9 +1,14 @@
-
-
-import type React from 'react'
-import { Modal, ModalHeader, ModalDescription, Form, FormGroup, Button } from 'semantic-ui-react';
-import { useTimer } from '../TimerContext/TimerContext';
-import './ModaleConfirm.scss';
+import type React from "react";
+import {
+  Modal,
+  ModalHeader,
+  ModalDescription,
+  Form,
+  FormGroup,
+  Button,
+} from "semantic-ui-react";
+import { useTimer } from "../TimerContext/TimerContext";
+import "./ModaleConfirm.scss";
 
 interface ModaleConfirmProps {
   open: boolean;
@@ -12,19 +17,17 @@ interface ModaleConfirmProps {
 }
 
 function ModaleConfirm({ open, setOpen }: ModaleConfirmProps) {
-
-  const { handleStopTimer} = useTimer();
-
+  const { handleStopTimer } = useTimer();
 
   // Fonction pour gérer la soumission du formulaire (confirmation)
   const handleConfirmStop = () => {
-    handleStopTimer();  // Appelle la fonction pour arrêter le timer
-    setOpen(false);      // Ferme la modale
-  }
+    handleStopTimer(); // Appelle la fonction pour arrêter le timer
+    setOpen(false); // Ferme la modale
+  };
 
   return (
     <Modal
-      size={'small'}
+      size={"small"}
       open={open}
       onClose={() => setOpen(false)} // Ferme la modale sans effectuer d'action
     >
@@ -35,12 +38,16 @@ function ModaleConfirm({ open, setOpen }: ModaleConfirmProps) {
 
       <Form>
         <FormGroup>
-          <Button type="button" onClick={handleConfirmStop}>Confirmer</Button>
-          <Button type="button" onClick={() => setOpen(false)}>Annuler</Button>
+          <Button type="button" onClick={handleConfirmStop}>
+            Confirmer
+          </Button>
+          <Button type="button" onClick={() => setOpen(false)}>
+            Annuler
+          </Button>
         </FormGroup>
       </Form>
     </Modal>
-  )
+  );
 }
 
 export default ModaleConfirm;

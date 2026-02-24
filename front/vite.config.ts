@@ -1,12 +1,10 @@
-
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  
   plugins: [react()],
-  base: '/', 
+  base: "/",
   // base:'/Kalhyge-prod/',
   // base: import.meta.env.VITE_BASE_URl,
 
@@ -18,16 +16,15 @@ export default defineConfig({
   //   },
   // },
   build: {
-    outDir: 'dist', // Vérifiez que le dossier de build est bien "dist"
+    outDir: "dist", // Vérifiez que le dossier de build est bien "dist"
     rollupOptions: {
-      input: 'index.html', // Point d'entrée pour le build
+      input: "index.html", // Point d'entrée pour le build
     },
   },
   server: {
     host: true,
     watch: {
-      usePolling: true
+      usePolling: true,
     },
-  }
-  
-})
+  },
+});

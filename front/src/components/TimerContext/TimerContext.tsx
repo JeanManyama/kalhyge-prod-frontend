@@ -1,40 +1,47 @@
-import axios from 'axios';
+import axios from "axios";
 
-import  { createContext, useState, useContext, type ReactNode, useEffect, useCallback  } from "react";
-import type { Machine, Article, ArticleProduction } from '../@types';
-import { io } from 'socket.io-client';
+import {
+  createContext,
+  useState,
+  useContext,
+  type ReactNode,
+  useEffect,
+  useCallback,
+} from "react";
+import type { Machine, Article, ArticleProduction } from "../@types";
+import { io } from "socket.io-client";
 const socket = io(import.meta.env.VITE_API_URL, {
   withCredentials: true,
-}); 
+});
 // Définir le type du contexte
 interface TimerContextType {
-  hours : number,
-  minutes : number,
-  seconds :number,
+  hours: number;
+  minutes: number;
+  seconds: number;
   // isRunning : boolean,
   formattedTime: string;
   start: boolean;
   timeBegin: Date | null;
-  stop: boolean;  // Ajout de stop
+  stop: boolean; // Ajout de stop
   timerId: number | null;
   articles: Article[] | null;
   machines: Machine[] | null;
   production: ArticleProduction[] | null;
   setFormattedTime: (time: string) => void;
   setStart: React.Dispatch<React.SetStateAction<boolean>>;
-  setTimeBegin:  (date: Date | null) => void;
+  setTimeBegin: (date: Date | null) => void;
   setStop: React.Dispatch<React.SetStateAction<boolean>>; // Ajout de setStop
 
-   setTimerId: React.Dispatch<React.SetStateAction<number | null>>;
+  setTimerId: React.Dispatch<React.SetStateAction<number | null>>;
   setHours: React.Dispatch<React.SetStateAction<number>>;
- setMinutes: React.Dispatch<React.SetStateAction<number>>;
-setSeconds: React.Dispatch<React.SetStateAction<number>>;
-handleStopTimer :  () => void;
+  setMinutes: React.Dispatch<React.SetStateAction<number>>;
+  setSeconds: React.Dispatch<React.SetStateAction<number>>;
+  handleStopTimer: () => void;
 }
 interface Timer {
-  time_elapsed: number ;
-  duration: number ;
-  time_begin: Date ;
+  time_elapsed: number;
+  duration: number;
+  time_begin: Date;
   // status: boolean ;
 }
 
@@ -58,17 +65,17 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
-  //-----------------TIMER--------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+  //-----------------TIMER--------------------------------------------------------------
   useEffect(() => {
     const fetchTimerStateFromBackend = async () => {
       try {
-        const accessToken = localStorage.getItem('accessToken');
-        const csrfToken = localStorage.getItem('csrfToken');
-        const response = await axios.get(`${apiUrl}/timers/active` , {
+        const accessToken = localStorage.getItem("accessToken");
+        const csrfToken = localStorage.getItem("csrfToken");
+        const response = await axios.get(`${apiUrl}/timers/active`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
-            'x-csrf-token': csrfToken,
-            'Content-Type': 'application/json',
+            "x-csrf-token": csrfToken,
+            "Content-Type": "application/json",
           },
         });
         const timer = response.data;
@@ -84,10 +91,12 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
             const minutes = Math.floor((remainingTime % 3600) / 60);
             const seconds = remainingTime % 60;
 
-            setFormattedTime(`${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`);
+            setFormattedTime(
+              `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`,
+            );
           } else {
             handleStopTimer();
-            setFormattedTime('00:00:00');
+            setFormattedTime("00:00:00");
             setStart(false);
             setStop(true);
           }
@@ -97,72 +106,78 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
           setTimerId(timer.id);
 
           // Sauvegarder l'état dans localStorage après l'avoir récupéré du backenddddd
-          localStorage.setItem('formattedTime', formattedTime);
-          localStorage.setItem('start', JSON.stringify(timer.status));
-          localStorage.setItem('timeBegin', timer.time_begin ? new Date(timer.time_begin).toISOString() : '');
-          localStorage.setItem('stop', JSON.stringify(false)); // ou true si le timer est supposé être stoppé
-          localStorage.setItem('timerId', JSON.stringify(timer.id));
+          localStorage.setItem("formattedTime", formattedTime);
+          localStorage.setItem("start", JSON.stringify(timer.status));
+          localStorage.setItem(
+            "timeBegin",
+            timer.time_begin ? new Date(timer.time_begin).toISOString() : "",
+          );
+          localStorage.setItem("stop", JSON.stringify(false)); // ou true si le timer est supposé être stoppé
+          localStorage.setItem("timerId", JSON.stringify(timer.id));
         }
       } catch (error) {
-        console.error('Erreur lors de la récupération du timer actif :', error);
+        console.error("Erreur lors de la récupération du timer actif :", error);
       }
     };
 
     fetchTimerStateFromBackend();
   }, [formattedTime]);
 
-   // Mettre à jour les données en localStorage quand le timer est mis à jourrrr
-   useEffect(() => {
+  // Mettre à jour les données en localStorage quand le timer est mis à jourrrr
+  useEffect(() => {
     const saveTimerStateToLocalStorage = () => {
-      localStorage.setItem('formattedTime', formattedTime);
-      localStorage.setItem('start', JSON.stringify(start));
-      localStorage.setItem('timeBegin', timeBegin ? timeBegin.toISOString() : '');
-      localStorage.setItem('stop', JSON.stringify(stop));
-      localStorage.setItem('timerId', JSON.stringify(timerId));
+      localStorage.setItem("formattedTime", formattedTime);
+      localStorage.setItem("start", JSON.stringify(start));
+      localStorage.setItem(
+        "timeBegin",
+        timeBegin ? timeBegin.toISOString() : "",
+      );
+      localStorage.setItem("stop", JSON.stringify(stop));
+      localStorage.setItem("timerId", JSON.stringify(timerId));
     };
 
     saveTimerStateToLocalStorage();
   }, [formattedTime, start, timeBegin, stop, timerId]);
-  
-// Écouter les mises à jour du timer via WebSocket
-useEffect(() => {
-  socket.on('timerUpdated', (data: { action: string, timer: Timer }) => {
-    if (data.action === 'start') {
-      setStop(false);
-      setStart(true);
-      setTimeBegin(new Date(data.timer.time_begin));
-    } else if (data.action === 'stop') {
-      setStop(true); 
-      setStart(false);
-      setFormattedTime('00:00:00');
-    } else if (data.action === 'update') {
-      const totalSeconds = data.timer.time_elapsed;
-      const remainingTime = data.timer.duration - totalSeconds;
 
-      if (remainingTime > 0) {
-        const hours = Math.floor(remainingTime / 3600);
-        const minutes = Math.floor((remainingTime % 3600) / 60);
-        const seconds = remainingTime % 60;
-
-        setFormattedTime(
-          `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
-        );
-        setHours(hours);
-        setMinutes(minutes);
-        setSeconds(seconds);
-      } else {
-        handleStopTimer();
-        setFormattedTime('00:00:00');
-        setStart(false);
+  // Écouter les mises à jour du timer via WebSocket
+  useEffect(() => {
+    socket.on("timerUpdated", (data: { action: string; timer: Timer }) => {
+      if (data.action === "start") {
+        setStop(false);
+        setStart(true);
+        setTimeBegin(new Date(data.timer.time_begin));
+      } else if (data.action === "stop") {
         setStop(true);
-      }
-    }
-  });
+        setStart(false);
+        setFormattedTime("00:00:00");
+      } else if (data.action === "update") {
+        const totalSeconds = data.timer.time_elapsed;
+        const remainingTime = data.timer.duration - totalSeconds;
 
-  return () => {
-    socket.off('timerUpdated');
-  };
-}, []);
+        if (remainingTime > 0) {
+          const hours = Math.floor(remainingTime / 3600);
+          const minutes = Math.floor((remainingTime % 3600) / 60);
+          const seconds = remainingTime % 60;
+
+          setFormattedTime(
+            `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`,
+          );
+          setHours(hours);
+          setMinutes(minutes);
+          setSeconds(seconds);
+        } else {
+          handleStopTimer();
+          setFormattedTime("00:00:00");
+          setStart(false);
+          setStop(true);
+        }
+      }
+    });
+
+    return () => {
+      socket.off("timerUpdated");
+    };
+  }, []);
   // Fonction pour arrêter le timer
   const handleStopTimer = async () => {
     try {
@@ -174,29 +189,28 @@ useEffect(() => {
       setStart(false); // Arrêter le timer
       setStop(true); // Arrêter le timer
     } catch (error) {
-      console.error('Erreur lors de l\'arrêt du timer', error);
+      console.error("Erreur lors de l'arrêt du timer", error);
     }
   };
- 
-//-----------------FIN TIMER--------------------------------------------------------------
 
+  //-----------------FIN TIMER--------------------------------------------------------------
 
-
-
-//-------------PRODUCTION--------------------------------------------------------------
- // Fecth Data pour la production
+  //-------------PRODUCTION--------------------------------------------------------------
+  // Fecth Data pour la production
   const [articles, setArticles] = useState<Article[] | null>(null);
-  const [ machines, setMachines] = useState<Machine[] | null>([]);
-  const [production, setProduction]= useState<ArticleProduction[] | null>(null);
+  const [machines, setMachines] = useState<Machine[] | null>([]);
+  const [production, setProduction] = useState<ArticleProduction[] | null>(
+    null,
+  );
 
-    // Lire le timerId depuis le localStorage lors du chargement initial
-    useEffect(() => {
-      const storedTimerId = localStorage.getItem("timerId");
-      if (storedTimerId) {
-        setTimerId(Number(storedTimerId)); // Convertir la chaîne en nombreeeeee
-      }
-    }, []);
-      // Synchroniser le timerId dans le localStorage lorsqu'il change
+  // Lire le timerId depuis le localStorage lors du chargement initial
+  useEffect(() => {
+    const storedTimerId = localStorage.getItem("timerId");
+    if (storedTimerId) {
+      setTimerId(Number(storedTimerId)); // Convertir la chaîne en nombreeeeee
+    }
+  }, []);
+  // Synchroniser le timerId dans le localStorage lorsqu'il change
   useEffect(() => {
     if (timerId !== null && timerId !== 0) {
       localStorage.setItem("timerId", timerId.toString());
@@ -204,26 +218,26 @@ useEffect(() => {
   }, [timerId]);
   // FETCH DATA Centre, SideBar et Header
 
-    const fetchData = useCallback(async (timerId: number) => {
+  const fetchData = useCallback(async (timerId: number) => {
     try {
-      const accessToken = localStorage.getItem('accessToken');
-      const csrfToken = localStorage.getItem('csrfToken');
+      const accessToken = localStorage.getItem("accessToken");
+      const csrfToken = localStorage.getItem("csrfToken");
       // console.log("TIMER ID DANS CONTEXT Avant d'envoyé au back -----------------------------",timerId);
       const response = await axios.get(`${apiUrl}/productions/${timerId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          'x-csrf-token': csrfToken,
-          'Content-Type': 'application/json',
+          "x-csrf-token": csrfToken,
+          "Content-Type": "application/json",
         },
       });
 
-      const data =  response.data;  
+      const data = response.data;
       // console.log(data);
-      setArticles(data.data.articles); 
+      setArticles(data.data.articles);
       // console.log("ARTICLES DANS CONTEXT A -----------------------------",articles);
       setMachines(data.data.machines);
       // console.log("MACHINES DANS CONTEXT A -----------------------------",machines);
-    
+
       setProduction(data.data.productions);
       // console.log("LA PRODUCTION DANS CONTEXT A  -----------------------------",production);
     } catch (error) {
@@ -231,63 +245,62 @@ useEffect(() => {
     }
   }, []);
   // console.log("LA PRODUCTION DANS CONTEXT A  -----------------------------",production);
- // Exécuter fetchData à chaque changement de timerId( Initial)
+  // Exécuter fetchData à chaque changement de timerId( Initial)
   useEffect(() => {
     if (timerId !== null && !Number.isNaN(timerId)) {
       fetchData(timerId);
-    }else{
+    } else {
       fetchTodayTimer();
       const storedTimerId = localStorage.getItem("timerId");
       fetchData(Number(storedTimerId));
     }
   }, [timerId, fetchData]);
-  
+
   // Écouter les événements de mise à jour de la production
   useEffect(() => {
     // Écouter les événements de mise à jour de la production
-    socket.on('productionUpdated', (data: { timerId?: number } = {}) => {
+    socket.on("productionUpdated", (data: { timerId?: number } = {}) => {
       // Utilisation de timerId par défaut si data.timerId est indéfini
       const effectiveTimerId = data.timerId ?? timerId;
-    
+
       // La condition passe directement si effectiveTimerId est égal à timerId
       if (effectiveTimerId != null && effectiveTimerId === timerId) {
         fetchData(effectiveTimerId);
       }
     });
-    
-    
-  
+
     return () => {
       // Nettoyer les écouteurs Socket.IO
-      socket.off('productionUpdated');
+      socket.off("productionUpdated");
     };
   }, [timerId, fetchData]);
 
   const fetchTodayTimer = async () => {
     try {
-      const accessToken = localStorage.getItem('accessToken');
-      const csrfToken = localStorage.getItem('csrfToken');
+      const accessToken = localStorage.getItem("accessToken");
+      const csrfToken = localStorage.getItem("csrfToken");
       const response = await axios.get(`${apiUrl}/timers/today`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          'x-csrf-token': csrfToken,
-          'Content-Type': 'application/json',
+          "x-csrf-token": csrfToken,
+          "Content-Type": "application/json",
         },
       });
       // console.log("TIMER D'AUJOURD'HUI ---------------------------",response.data.timerId);
       // Mise à jours de la valeur du timer d'aujourd'hui
       setTimerId(response.data.timerId);
-      const localStorageIdTimer = response.data.timerId
-      localStorage.setItem('timerId', JSON.stringify(localStorageIdTimer));
+      const localStorageIdTimer = response.data.timerId;
+      localStorage.setItem("timerId", JSON.stringify(localStorageIdTimer));
       // console.log("La nouvelle valeur du Timer d'aujourd'hui est ---------------------------",timerId);
     } catch (error) {
-      console.error("Erreur lors du chargement du timer d'aujourd'hui :", error);
+      console.error(
+        "Erreur lors du chargement du timer d'aujourd'hui :",
+        error,
+      );
     }
   };
 
- 
-//-----------------FIN PRODUCTION--------------------------------------------------------
-
+  //-----------------FIN PRODUCTION--------------------------------------------------------
 
   return (
     <TimerContext.Provider

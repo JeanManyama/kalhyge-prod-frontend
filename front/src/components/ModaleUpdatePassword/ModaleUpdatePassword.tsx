@@ -1,28 +1,31 @@
-import type React from 'react';
-import { useEffect, useState } from 'react';
-import './ModaleUpdatePassword.scss';
+import type React from "react";
+import { useEffect, useState } from "react";
+import "./ModaleUpdatePassword.scss";
 
 interface ModaleUpdatePasswordProps {
   isOpen: boolean;
-  fetchUserInfo : () => Promise<void>;
+  fetchUserInfo: () => Promise<void>;
   onClose: () => void;
   onSave: (newPassword: string) => void;
 }
 
-const ModaleUpdatePassword: React.FC<ModaleUpdatePasswordProps> = ({ isOpen, fetchUserInfo,  onClose, onSave }) => {
-  const [newPassword, setNewPassword] = useState('');
+const ModaleUpdatePassword: React.FC<ModaleUpdatePasswordProps> = ({
+  isOpen,
+  fetchUserInfo,
+  onClose,
+  onSave,
+}) => {
+  const [newPassword, setNewPassword] = useState("");
 
-  useEffect(()=>{
-    if(isOpen){
-      fetchUserInfo()
+  useEffect(() => {
+    if (isOpen) {
+      fetchUserInfo();
     }
-   
-  },[isOpen, fetchUserInfo]);
-  
+  }, [isOpen, fetchUserInfo]);
+
   if (!isOpen) {
     return null; // Ne rien afficher si la modale n'est pas ouverte
   }
-
 
   return (
     <div className="modal-overlay">
@@ -45,7 +48,7 @@ const ModaleUpdatePassword: React.FC<ModaleUpdatePasswordProps> = ({ isOpen, fet
             className="modal-button save-button"
             onClick={() => {
               onSave(newPassword);
-              setNewPassword(''); // Réinitialiser le champ après la sauvegarde
+              setNewPassword(""); // Réinitialiser le champ après la sauvegarde
             }}
           >
             Sauvegarder

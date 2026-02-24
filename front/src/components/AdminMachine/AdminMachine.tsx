@@ -1,4 +1,3 @@
-
 import {
   Form,
   FormGroup,
@@ -56,8 +55,10 @@ function AdminMachine({
         data: { id: machineToDelete },
       });
 
-      setMachines((prevMachines) =>
-        prevMachines?.filter((machine) => machine.id !== machineToDelete) || []
+      setMachines(
+        (prevMachines) =>
+          prevMachines?.filter((machine) => machine.id !== machineToDelete) ||
+          [],
       );
 
       setConfirmDeleteModalOpen(false);
@@ -108,7 +109,10 @@ function AdminMachine({
       setTimeout(() => setSuccessMessage(""), 3000);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        setError(error.response?.data?.error || "Erreur lors de l'ajout de la machine.");
+        setError(
+          error.response?.data?.error ||
+            "Erreur lors de l'ajout de la machine.",
+        );
       } else {
         setError("Une erreur inattendue s'est produite.");
       }
@@ -138,10 +142,11 @@ function AdminMachine({
 
       const updatedMachine = response.data;
 
-      setMachines((prevMachines) =>
-        prevMachines?.map((machine) =>
-          machine.id === id ? updatedMachine : machine
-        ) || []
+      setMachines(
+        (prevMachines) =>
+          prevMachines?.map((machine) =>
+            machine.id === id ? updatedMachine : machine,
+          ) || [],
       );
 
       setSuccessMessage("Machine modifiée avec succès !");
@@ -151,7 +156,10 @@ function AdminMachine({
       setEditedMachineName("");
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        setError(error.response?.data?.error || "Erreur lors de la modification de la machine.");
+        setError(
+          error.response?.data?.error ||
+            "Erreur lors de la modification de la machine.",
+        );
       } else {
         setError("Une erreur inattendue s'est produite.");
       }
@@ -194,12 +202,21 @@ function AdminMachine({
                 </FormGroup>
               </Form>
               {error && <p style={{ color: "red" }}>{error}</p>}
-              {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+              {successMessage && (
+                <p style={{ color: "green" }}>{successMessage}</p>
+              )}
 
-              <Modal open={confirmDeleteModalOpen} onClose={closeDeleteModal} size="small">
+              <Modal
+                open={confirmDeleteModalOpen}
+                onClose={closeDeleteModal}
+                size="small"
+              >
                 <Modal.Header>Confirmer la suppression</Modal.Header>
                 <Modal.Content>
-                  <p>Êtes-vous sûr de vouloir supprimer cette machine ? Cette action est irréversible.</p>
+                  <p>
+                    Êtes-vous sûr de vouloir supprimer cette machine ? Cette
+                    action est irréversible.
+                  </p>
                 </Modal.Content>
                 <Modal.Actions>
                   <Button onClick={closeDeleteModal}>Annuler</Button>
@@ -214,7 +231,10 @@ function AdminMachine({
                 {machines &&
                   machines.map((machine, index) => (
                     <li className="item" key={machine.id}>
-                      <label className={"item-label item-label--done"} htmlFor={`machine-${machine.id}`}>
+                      <label
+                        className={"item-label item-label--done"}
+                        htmlFor={`machine-${machine.id}`}
+                      >
                         <span>{index + 1}</span>
                         {editingMachineId === machine.id ? (
                           <form
@@ -246,17 +266,17 @@ function AdminMachine({
                           </p>
                         )}
                       </label>
-                     {/* Bouton Edit */}
-                        <button
-                          type="button"
-                          className="item-delete"
-                          onClick={() => {
-                            setEditingMachineId(machine.id);
-                            setEditedMachineName(machine.name);
-                          }}
-                        >
-                          <Edit size={20} />
-                        </button>
+                      {/* Bouton Edit */}
+                      <button
+                        type="button"
+                        className="item-delete"
+                        onClick={() => {
+                          setEditingMachineId(machine.id);
+                          setEditedMachineName(machine.name);
+                        }}
+                      >
+                        <Edit size={20} />
+                      </button>
                       <button
                         type="button"
                         className="item-delete"
@@ -279,4 +299,3 @@ function AdminMachine({
 }
 
 export default AdminMachine;
-

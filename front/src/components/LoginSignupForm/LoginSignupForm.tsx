@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import './LoginSignupForm.scss';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./LoginSignupForm.scss";
 
 const LoginSignupForm = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [isResetMode, setIsResetMode] = useState(false);
   const [stepReset, setStepReset] = useState(1); // 1 = saisie email + mdp, 2 = saisie code
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    firstname: '',
-    code: '', // pour le code de validation
+    email: "",
+    password: "",
+    firstname: "",
+    code: "", // pour le code de validation
   });
 
   const [error, setError] = useState<string | null>(null);
@@ -59,10 +59,12 @@ const LoginSignupForm = () => {
             email: formData.email,
             code: formData.code,
           });
-          setSuccessMessage("Mot de passe mis à jour. Vous pouvez vous connecter.");
+          setSuccessMessage(
+            "Mot de passe mis à jour. Vous pouvez vous connecter.",
+          );
           setIsResetMode(false);
           setIsLoginMode(true);
-          setFormData({ email: '', password: '', firstname: '', code: '' });
+          setFormData({ email: "", password: "", firstname: "", code: "" });
           setStepReset(1);
         }
         return;
@@ -73,10 +75,10 @@ const LoginSignupForm = () => {
           email: formData.email,
           password: formData.password,
         });
-        localStorage.setItem('accessToken', response.data.accessToken);
-        localStorage.setItem('refreshToken', response.data.refreshToken);
-        localStorage.setItem('csrfToken', response.data.csrfToken);
-        navigate('/home');
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("refreshToken", response.data.refreshToken);
+        localStorage.setItem("csrfToken", response.data.csrfToken);
+        navigate("/home");
       } else {
         const response = await axios.post(`${apiUrl}/signup`, {
           firstname: formData.firstname,
@@ -84,13 +86,13 @@ const LoginSignupForm = () => {
           password: formData.password,
         });
         console.log(response.data.firstname);
-        setSuccessMessage('Compte créé avec succès');
-        setFormData({ email: '', password: '', firstname: '', code: '' });
+        setSuccessMessage("Compte créé avec succès");
+        setFormData({ email: "", password: "", firstname: "", code: "" });
         setIsLoginMode(true);
       }
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Une erreur est survenue.');
+      setError(err.response?.data?.message || "Une erreur est survenue.");
     }
   };
 
@@ -99,11 +101,11 @@ const LoginSignupForm = () => {
       <h1>
         {isResetMode
           ? stepReset === 1
-            ? 'Réinitialiser le mot de passe'
-            : 'Valider le code'
+            ? "Réinitialiser le mot de passe"
+            : "Valider le code"
           : isLoginMode
-          ? 'Connexion'
-          : 'Créer un compte'}
+            ? "Connexion"
+            : "Créer un compte"}
       </h1>
       <form onSubmit={handleSubmit} className="form">
         {!isLoginMode && !isResetMode && (
@@ -131,7 +133,7 @@ const LoginSignupForm = () => {
         {(!isLoginMode || isLoginMode || isResetMode) && stepReset !== 2 && (
           <div className="password-wrapper">
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Mot de passe"
               value={formData.password}
@@ -143,9 +145,13 @@ const LoginSignupForm = () => {
               type="button"
               onClick={() => setShowPassword((prev) => !prev)}
               className="toggle-password"
-              aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
+              aria-label={
+                showPassword
+                  ? "Masquer le mot de passe"
+                  : "Afficher le mot de passe"
+              }
             >
-              {showPassword ? '🙈' : '👁️'}
+              {showPassword ? "🙈" : "👁️"}
             </button>
           </div>
         )}
@@ -165,11 +171,11 @@ const LoginSignupForm = () => {
         <button type="submit" className="button">
           {isResetMode
             ? stepReset === 1
-              ? 'Envoyer le code'
-              : 'Valider le code'
+              ? "Envoyer le code"
+              : "Valider le code"
             : isLoginMode
-            ? 'Se connecter'
-            : 'Créer un compte'}
+              ? "Se connecter"
+              : "Créer un compte"}
         </button>
       </form>
 
@@ -182,18 +188,18 @@ const LoginSignupForm = () => {
           <button
             onClick={() => {
               setIsLoginMode(!isLoginMode);
-              setFormData({ email: '', password: '', firstname: '', code: '' });
+              setFormData({ email: "", password: "", firstname: "", code: "" });
             }}
             className="button secondary"
           >
-            {isLoginMode ? 'Créer un compte' : 'Se connecter'}
+            {isLoginMode ? "Créer un compte" : "Se connecter"}
           </button>
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
             onClick={() => {
               setIsResetMode(true);
               setIsLoginMode(false);
-              setFormData({ email: '', password: '', firstname: '', code: '' });
+              setFormData({ email: "", password: "", firstname: "", code: "" });
             }}
             className="button link"
           >
@@ -206,4 +212,3 @@ const LoginSignupForm = () => {
 };
 
 export default LoginSignupForm;
-

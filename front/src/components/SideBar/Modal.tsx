@@ -1,5 +1,4 @@
-
-import './Modal.scss';
+import "./Modal.scss";
 
 interface ModalProps {
   message: string;

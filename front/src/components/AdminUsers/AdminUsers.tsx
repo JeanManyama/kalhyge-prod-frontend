@@ -27,13 +27,10 @@ interface AdminUsersProps {
   setOpenAdminUsers: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function AdminUsers({
-  openAdminUsers,
-  setOpenAdminUsers,
-}: AdminUsersProps) {
+function AdminUsers({ openAdminUsers, setOpenAdminUsers }: AdminUsersProps) {
   const navigate = useNavigate();
   const [users, setUsers] = useState<UserAttributes[] | null>(null); // Liste des utilisateurs
-  const [error, setError] = useState<string>(""); 
+  const [error, setError] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<string>(""); // Message de succès
 
   // SUPPRESSION D'UN UTILISATEUR
@@ -43,23 +40,23 @@ function AdminUsers({
   const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
- fetchUsers();
+    fetchUsers();
   }, []);
-  
+
   const fetchUsers = async () => {
     try {
-      const accessToken = localStorage.getItem('accessToken');
-      const csrfToken = localStorage.getItem('csrfToken');
+      const accessToken = localStorage.getItem("accessToken");
+      const csrfToken = localStorage.getItem("csrfToken");
       // console.log("Chargement des utilisateurs...----------------------------------------");
-      const response = await axios.get(`${apiUrl}/users/admin` , {
+      const response = await axios.get(`${apiUrl}/users/admin`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          'x-csrf-token': csrfToken,
-          'Content-Type': 'application/json',
+          "x-csrf-token": csrfToken,
+          "Content-Type": "application/json",
         },
       }); // Remplacez l'URL par celle correspondant à votre API.
       const data = response.data;
-  
+
       if (data && Array.isArray(data)) {
         // console.log("Données des utilisateurs récupérées :", data);
         setUsers(data); // Mettez à jour l'état avec les utilisateurs récupérés.
@@ -70,7 +67,6 @@ function AdminUsers({
       console.error("Erreur lors du chargement des utilisateurs :", error);
     }
   };
-  
 
   // Fonction pour gérer la suppression d'un utilisateur
   const handleDeleteUser = async () => {
@@ -85,8 +81,9 @@ function AdminUsers({
         data: { id: userToDelete },
       });
 
-      setUsers((prevUsers) =>
-        prevUsers?.filter((user) => user.id !== userToDelete) || []
+      setUsers(
+        (prevUsers) =>
+          prevUsers?.filter((user) => user.id !== userToDelete) || [],
       );
 
       setConfirmDeleteModalOpen(false);
@@ -132,7 +129,9 @@ function AdminUsers({
             <h1>LISTE DES UTILISATEURS</h1>
 
             {error && <p style={{ color: "red" }}>{error}</p>}
-            {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+            {successMessage && (
+              <p style={{ color: "green" }}>{successMessage}</p>
+            )}
 
             {/* Liste dynamique des utilisateurs */}
             <ul>
@@ -140,7 +139,10 @@ function AdminUsers({
               {users &&
                 users.map((user) => (
                   <li className="item" key={user.id}>
-                    <label className={"item-label item-label--done"} htmlFor={`user-${user.id}`}>
+                    <label
+                      className={"item-label item-label--done"}
+                      htmlFor={`user-${user.id}`}
+                    >
                       <span>{user.firstname}</span>
                       <p>{user.email}</p>
                     </label>
@@ -153,8 +155,6 @@ function AdminUsers({
                     >
                       <Trash size={20} />
                     </button>
-
-               
                   </li>
                 ))}
             </ul>
@@ -174,7 +174,10 @@ function AdminUsers({
       >
         <Modal.Header>Confirmer la suppression</Modal.Header>
         <Modal.Content>
-          <p>Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.</p>
+          <p>
+            Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action
+            est irréversible.
+          </p>
         </Modal.Content>
         <Modal.Actions>
           <Button onClick={closeDeleteModal}>Annuler</Button>
