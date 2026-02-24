@@ -209,9 +209,10 @@ function ProdDetail({
       return;
     }
 
-    // biome-ignore lint/suspicious/noGlobalIsNan: <explanation>
+   
     if (
       !newQuantity ||
+      Number.
       isNaN(Number(newQuantity)) ||
       Number(newQuantity) <= 0
     ) {
