@@ -1,15 +1,15 @@
-import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import {
-  Modal,
   Button,
-  ModalHeader,
+  Modal,
+  ModalActions,
   ModalContent,
   ModalDescription,
-  ModalActions,
+  ModalHeader,
 } from "semantic-ui-react";
 import { useTimer } from "../TimerContext/TimerContext";
-import { useParams } from "react-router-dom";
 import "./MachineDetail.scss";
 
 interface MachineDetailProps {

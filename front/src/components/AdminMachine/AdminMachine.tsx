@@ -1,20 +1,20 @@
+import axios from "axios";
+import { useState } from "react";
+import { Edit, Trash } from "react-feather";
+import { useNavigate } from "react-router-dom";
 import {
+  Button,
   Form,
   FormGroup,
   FormInput,
-  Button,
   Modal,
   ModalActions,
   ModalContent,
   ModalDescription,
   ModalHeader,
 } from "semantic-ui-react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Trash, Edit } from "react-feather";
 import type { Machine } from "../@types";
 import "./AdminMachine.scss";
-import axios from "axios";
 
 interface AdminMachineProps {
   machines: Machine[] | null;

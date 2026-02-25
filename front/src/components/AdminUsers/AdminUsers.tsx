@@ -1,3 +1,7 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Trash } from "react-feather";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Modal,
@@ -6,10 +10,6 @@ import {
   ModalDescription,
   ModalHeader,
 } from "semantic-ui-react";
-import { useState, useEffect } from "react";
-import { Trash } from "react-feather";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import "./AdminUsers.scss";
 
 interface UserAttributes {

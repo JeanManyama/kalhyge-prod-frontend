@@ -1,11 +1,11 @@
 import type React from "react";
 import {
-  ModalContent,
-  ModalActions,
   Button,
   Header,
   Icon,
   Modal,
+  ModalActions,
+  ModalContent,
 } from "semantic-ui-react";
 
 interface ModaleStopProps {

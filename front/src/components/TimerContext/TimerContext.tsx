@@ -1,15 +1,15 @@
 import axios from "axios";
 
 import {
-  createContext,
-  useState,
-  useContext,
   type ReactNode,
-  useEffect,
+  createContext,
   useCallback,
+  useContext,
+  useEffect,
+  useState,
 } from "react";
-import type { Machine, Article, ArticleProduction } from "../@types";
 import { io } from "socket.io-client";
+import type { Article, ArticleProduction, Machine } from "../@types";
 const socket = io(import.meta.env.VITE_API_URL, {
   withCredentials: true,
 });

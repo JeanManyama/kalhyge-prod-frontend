@@ -1,5 +1,18 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "files": {
+    "ignore": [
+      "dist",
+      "**/dist/**",
+      "build",
+      "**/build/**",
+      "node_modules",
+      "**/node_modules/**",
+      "*.env",
+
+      "src/components/TimerContext/**"
+    ]
+  },
   "organizeImports": {
     "enabled": true
   },

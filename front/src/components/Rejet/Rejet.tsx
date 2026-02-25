@@ -1,8 +1,12 @@
+import axios from "axios"; // Assurez-vous d'avoir axios installé pour les requêtes HTTP
+import { useEffect, useState } from "react";
+import { Edit, Trash } from "react-feather";
+import { useNavigate } from "react-router-dom";
 import {
+  Button,
   Form,
   FormGroup,
   FormInput,
-  Button,
   FormSelect,
   Modal,
   ModalActions,
@@ -11,10 +15,6 @@ import {
   ModalHeader,
 } from "semantic-ui-react";
 import { useTimer } from "../TimerContext/TimerContext";
-import { Trash, Edit } from "react-feather";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios"; // Assurez-vous d'avoir axios installé pour les requêtes HTTP
 import "./Rejet.scss";
 
 interface RejetProps {

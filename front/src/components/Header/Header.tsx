@@ -1,20 +1,18 @@
 //MES CODES D'AVANT
 
-import { Form, Image, Button, FormGroup, FormInput } from "semantic-ui-react";
-// import axios from 'axios';
+import { Button, Form, FormGroup, FormInput, Image } from "semantic-ui-react";
 import ModaleConfirm from "../ModaleConfirm/Modaleconfirm";
 import "./Header.scss";
-import { useNavigate } from "react-router-dom"; // Importer useNavigate
-import logo from "../../assets/logokaly.png";
+import { useNavigate } from "react-router-dom";
 import jensen from "../../assets/jensen.png";
 import kane from "../../assets/kannegieser.png";
+import logo from "../../assets/logokaly.png";
 import plieuse1 from "../../assets/plieuse-1.png";
 import plieuse2 from "../../assets/plieuse-2.png";
 
-import type { Machine } from "../@types";
-// import { io } from "socket.io-client";  // Importer socket.io-client
 import { useEffect, useState } from "react";
-import { useTimer } from "../TimerContext/TimerContext"; // Importer le hook du contexte
+import type { Machine } from "../@types";
+import { useTimer } from "../TimerContext/TimerContext";
 
 // const socket = io("http://localhost:3000"); // URL de ton backend
 

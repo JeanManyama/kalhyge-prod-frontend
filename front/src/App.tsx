@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LoginSignupForm from "./components/LoginSignupForm/LoginSignupForm";
-import { TimerProvider } from "./components//TimerContext/TimerContext";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./components/Home/Home";
+import LoginSignupForm from "./components/LoginSignupForm/LoginSignupForm";
+import { TimerProvider } from "./components/TimerContext/TimerContext";
 
 import "./App.scss";
 

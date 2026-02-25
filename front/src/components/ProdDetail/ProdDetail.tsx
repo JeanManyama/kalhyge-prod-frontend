@@ -1,21 +1,21 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { Edit, Trash } from "react-feather";
+import type { DropdownProps } from "semantic-ui-react";
 import {
+  Button,
   Form,
   FormGroup,
   FormInput,
-  Button,
   FormSelect,
   Modal,
+  ModalActions,
   ModalContent,
   ModalDescription,
   ModalHeader,
-  ModalActions,
 } from "semantic-ui-react";
-import type { DropdownProps } from "semantic-ui-react";
-import { Trash, Edit } from "react-feather";
-import "./ProdDetail.scss";
 import type { ProductionResponse } from "../@types";
-import axios from "axios";
+import "./ProdDetail.scss";
 // import type { AxiosError } from "axios";
 
 interface ProdDetailProps {

@@ -1,0 +1,8 @@
+{
+  "formatter": {
+    "organizeImports": {
+      "sort": "alphabetical",
+      "separateTypeImports": true
+    }
+  }
+}

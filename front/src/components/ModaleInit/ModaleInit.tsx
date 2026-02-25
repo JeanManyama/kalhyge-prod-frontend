@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
-import { FaTimes, FaCheck, FaClock, FaChartLine } from "react-icons/fa";
 import axios from "axios";
-import io from "socket.io-client";
+import { useEffect, useState } from "react";
+import { FaChartLine, FaCheck, FaClock, FaTimes } from "react-icons/fa";
 import {
+  Button,
   Form,
   FormGroup,
   FormInput,
   FormSelect,
-  Button,
   Modal,
+  ModalActions,
   ModalContent,
   ModalDescription,
   ModalHeader,
-  ModalActions,
 } from "semantic-ui-react";
+import io from "socket.io-client";
 import type { Article, Machine, Timer } from "../@types";
-import "./Modale.scss";
 import { useTimer } from "../TimerContext/TimerContext"; // Importer le hook pour accéder au contexte
+import "./Modale.scss";
 
 // Connexion au serveur WebSocket
 const socket = io(import.meta.env.VITE_API_URL);

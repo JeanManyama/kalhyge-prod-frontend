@@ -1,11 +1,11 @@
 import type React from "react";
 import {
-  Modal,
-  ModalHeader,
-  ModalDescription,
+  Button,
   Form,
   FormGroup,
-  Button,
+  Modal,
+  ModalDescription,
+  ModalHeader,
 } from "semantic-ui-react";
 import { useTimer } from "../TimerContext/TimerContext";
 import "./ModaleConfirm.scss";

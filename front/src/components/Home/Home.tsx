@@ -1,32 +1,32 @@
-import Header from "../Header/Header";
-import Prod from "../Prod/Prod";
-import SideBar from "../SideBar/SideBar";
-import ModaleInit from "../ModaleInit/ModaleInit";
-import ProdDetail from "../ProdDetail/ProdDetail";
-import MachineDetail from "../MachineDetail/MachineDetail";
-import AdminArticle from "../AdminArticle/AdminArticle";
-import Rejet from "../Rejet/Rejet";
-import ModaleStop from "../ModaleStop/ModaleStop";
-import Historique from "../Historique/Historique";
-import AdminUsers from "../AdminUsers/AdminUsers";
 // import LoginSignupForm from "../LoginSignupForm/LoginSignupForm";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import type {
-  Machine,
   Article,
-  ProductionResponse,
   ArticleProduction,
+  Machine,
+  ProductionResponse,
   UserInfo,
 } from "../@types";
+import AdminArticle from "../AdminArticle/AdminArticle";
+import AdminUsers from "../AdminUsers/AdminUsers";
+import Header from "../Header/Header";
+import Historique from "../Historique/Historique";
+import MachineDetail from "../MachineDetail/MachineDetail";
+import ModaleInit from "../ModaleInit/ModaleInit";
+import ModaleStop from "../ModaleStop/ModaleStop";
+import Prod from "../Prod/Prod";
+import ProdDetail from "../ProdDetail/ProdDetail";
+import Rejet from "../Rejet/Rejet";
+import SideBar from "../SideBar/SideBar";
 // import { io } from 'socket.io-client';
 import { useTimer } from "../TimerContext/TimerContext";
 
-import "./Home.scss";
 import AdminMachine from "../AdminMachine/AdminMachine";
 import Modale3trait from "../Modale3trait/Modale3trait";
 import ModaleUpdatePassword from "../ModaleUpdatePassword/ModaleUpdatePassword";
+import "./Home.scss";
 
 //Utiliser HashRouter si l'utilisation de githubPages !!!
 

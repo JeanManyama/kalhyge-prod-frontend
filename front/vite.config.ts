@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,17 +8,10 @@ export default defineConfig({
   // base:'/Kalhyge-prod/',
   // base: import.meta.env.VITE_BASE_URl,
 
-  // Pour gérer les soucis avec docker et le serveurs de vitejs
-  // On rajout la config suivante
-  // build: {
-  //   rollupOptions: {
-  //     input: '/index.html',,,
-  //   },
-  // },
   build: {
-    outDir: "dist", // Vérifiez que le dossier de build est bien "dist"
+    outDir: "dist",
     rollupOptions: {
-      input: "index.html", // Point d'entrée pour le build
+      input: "index.html",
     },
   },
   server: {

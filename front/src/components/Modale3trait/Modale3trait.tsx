@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./Modale3trait.scss";
 
-import SideBar from "../SideBar/SideBar";
 import type { Machine } from "../@types";
+import SideBar from "../SideBar/SideBar";
 
 interface Article {
   id: number;

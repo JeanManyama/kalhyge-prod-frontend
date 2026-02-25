@@ -1,15 +1,15 @@
+import type { AxiosError } from "axios";
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  Modal,
-  ModalHeader,
-  ModalContent,
-  ModalActions,
   Button,
   Input,
+  Modal,
+  ModalActions,
+  ModalContent,
+  ModalHeader,
 } from "semantic-ui-react";
-import type { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import "./Historique.scss";
 
