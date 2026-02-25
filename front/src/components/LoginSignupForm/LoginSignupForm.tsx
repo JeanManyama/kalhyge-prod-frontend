@@ -104,7 +104,7 @@ const LoginSignupForm = () => {
             ? "Réinitialiser le mot de passe"
             : "Valider le code"
           : isLoginMode
-            ? "Connexion"
+            ? "Connexionnn"
             : "Créer un compte"}
       </h1>
       <form onSubmit={handleSubmit} className="form">
