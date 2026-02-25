@@ -104,7 +104,7 @@ const LoginSignupForm = () => {
             ? "Réinitialiser le mot de passe"
             : "Valider le code"
           : isLoginMode
-            ? "Connexionnn"
+            ? "Connexion"
             : "Créer un compte"}
       </h1>
       <form onSubmit={handleSubmit} className="form">
@@ -203,7 +203,7 @@ const LoginSignupForm = () => {
             }}
             className="button link"
           >
-            Mot de passe oublié ?
+            Mot de passe oubliéeee ?
           </button>
         </>
       )}
