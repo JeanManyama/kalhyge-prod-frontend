@@ -168,7 +168,7 @@ const LoginSignupForm = () => {
           />
         )}
 
-        <button type="submit" className="button">
+        <button type="submit" className="Button">
           {isResetMode
             ? stepReset === 1
               ? "Envoyer le code"
@@ -201,9 +201,9 @@ const LoginSignupForm = () => {
               setIsLoginMode(false);
               setFormData({ email: "", password: "", firstname: "", code: "" });
             }}
-            className="button link"
+            className="Button link"
           >
-            Mot de passe oubliéeee ?
+            Mot de passe oublié ?
           </button>
         </>
       )}
