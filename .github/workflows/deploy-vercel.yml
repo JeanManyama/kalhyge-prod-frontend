@@ -1,0 +1,15 @@
+name: Deploy Front to Vercel
+
+on:
+  push:
+    branches:
+      - deploy-front-vercel
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Deploy
+        uses: wei/curl@v1
+        with:
+          args: -X POST https://api.vercel.com/v1/integrations/deploy/prj_qtEFlSbX6bsmdWqbNOD8wtNjSCJI/c5hajEwatV
