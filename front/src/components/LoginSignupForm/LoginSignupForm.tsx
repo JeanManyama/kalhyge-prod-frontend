@@ -71,11 +71,6 @@ const LoginSignupForm = () => {
       }
 
       if (isLoginMode) {
-        // debug env
-        console.log(
-          "APIIII------------------ URL =",
-          import.meta.env.VITE_API_URL,
-        );
         const response = await axios.post(`${apiUrl}/signin`, {
           email: formData.email,
           password: formData.password,
