@@ -71,9 +71,6 @@ const LoginSignupForm = () => {
       }
 
       if (isLoginMode) {
-        // debug env
-        console.log("API URL =", import.meta.env.VITE_API_URL);
-
         const response = await axios.post(`${apiUrl}/signin`, {
           email: formData.email,
           password: formData.password,
@@ -107,7 +104,7 @@ const LoginSignupForm = () => {
             ? "Réinitialiser le mot de passe"
             : "Valider le code"
           : isLoginMode
-            ? "Connexion"
+            ? "Connexionnnnnnnnnn"
             : "Créer un compte"}
       </h1>
       <form onSubmit={handleSubmit} className="form">
