@@ -73,7 +73,7 @@ const LoginSignupForm = () => {
       if (isLoginMode) {
         // debug env
         console.log(
-          "APIIIIIIIIIIIIIIIIIIIIIIIIIII URL =",
+          "APIIII------------------ URL =",
           import.meta.env.VITE_API_URL,
         );
         const response = await axios.post(`${apiUrl}/signin`, {
