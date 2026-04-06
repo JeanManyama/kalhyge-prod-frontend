@@ -168,7 +168,7 @@ function SideBar({
           </>
         )}
       </ul>
-      <p className="footer-message">kalhyge@copyright2025</p>
+      <p className="footer-message">kalhyge@copyright2026</p>
     </nav>
   );
 }
