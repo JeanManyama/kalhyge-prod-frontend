@@ -547,6 +547,7 @@ function ModaleInit({
                       options={[
                         { key: "0", text: "0", value: "0" },
                         { key: "1", text: "1", value: "1" },
+                        { key: "2", text: "1", value: "1" },
                         { key: "3", text: "3", value: "3" },
                         { key: "4", text: "4", value: "4" },
                         { key: "5", text: "5", value: "5" },
