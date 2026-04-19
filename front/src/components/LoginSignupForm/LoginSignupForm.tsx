@@ -92,7 +92,11 @@ const LoginSignupForm = () => {
       }
       // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     } catch (err: any) {
-      setError(err.response?.data?.message || "Une erreur est survenue.");
+      if (err.response?.status === 429) {
+        setError("Trop de tentatives. Réessaie dans quelques instants.");
+      } else {
+        setError(err.response?.data?.message || "Une erreur est survenue.");
+      }
     }
   };
 
