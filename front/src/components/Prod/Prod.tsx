@@ -21,7 +21,7 @@ function Prod({ productions }: ProdProps) {
     Jensen: 300, // Machine Jensen peut produire 300 articles B par heure
     Kannegieser: 200, // Machine Kannegieser peut produire 200 articles D par heure
     "Plieuse 1": 300, // Machine Plieuse1 peut produire 100 articles F par heure
-    Plieuse2: 200, // Machine Plieuse2 peut produire 100 articles H par heure
+    "Plieuse 2": 200, // Machine Plieuse2 peut produire 100 articles H par heure
   };
 
   // Calculer le temps restant global en secondes
@@ -31,6 +31,7 @@ function Prod({ productions }: ProdProps) {
   const calculateProbability = (article: ArticleProduction) => {
     const { objective, total_quantity_valid, machines } = article;
 
+    // console.log("ARTICLE------------", name);
     // console.log("OBJECTIVE------------", objective);
     // console.log("Quantité valid est ------------", total_quantity_valid);
 
