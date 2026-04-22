@@ -86,17 +86,43 @@ const LoginSignupForm = () => {
           password: formData.password,
         });
         console.log(response.data.firstname);
-        setSuccessMessage("Compte créé avec succès");
+        setSuccessMessage(response.data.message);
         setFormData({ email: "", password: "", firstname: "", code: "" });
         setIsLoginMode(true);
+        setIsResetMode(false);
       }
       // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     } catch (err: any) {
-      if (err.response?.status === 429) {
-        setError("Trop de tentatives. Réessaie dans quelques instants.");
-      } else {
-        setError(err.response?.data?.message || "Une erreur est survenue.");
+      const status = err.response?.status;
+      const message = err.response?.data?.message;
+
+      if (status === 429) {
+        if (isLoginMode) {
+          setError("⛔ Trop de tentatives. Compte bloqué temporairement.");
+        } else {
+          setError(
+            "⛔ Trop de créations de compte. Réessaie dans quelques instants.",
+          );
+        }
+        return;
       }
+
+      if (status === 401) {
+        setError("Identifiants incorrects.");
+        return;
+      }
+
+      if (status === 409) {
+        setError(message || "Email déjà utilisé.");
+        return;
+      }
+
+      if (status === 400) {
+        setError("Données invalides");
+        return;
+      }
+
+      setError("Une erreur est survenue.");
     }
   };
 
