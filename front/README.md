@@ -1,50 +1,113 @@
-# React + TypeScript + Vite
+# Kalhyge-Prod – Suivi de production industrielle
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application web permettant le suivi en temps réel de la production en blanchisserie industrielle.
+Objectif : remplacer les relevés manuels et améliorer la prise de décision.
 
-Currently, two official plugins are available:
+## 🚀 Démo en ligne
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🌐 Frontend : <https://deploy-front-vercel-cd.vercel.app>
+- 🔗 API Backend : <https://api-kalhygee.onrender.com>
+  
+  Test rapide :
+  - GET /health → vérifie que l’API est opérationnelle
+- 💻 Code Backend : <https://github.com/JeanManyama/api-kalhygee>
 
-## Expanding the ESLint configuration
+## 🏗️ Architecture globale
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Client (React) → API REST (Node.js / Express) → Base de données (PostgreSQL)
 
-- Configure the top-level `parserOptions` property like this:
+Pipeline DevOps :
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- CI : GitHub Actions (tests, lint, audit, build)
+- CD :
+  - Frontend déployé sur Vercel
+  - Backend déployé sur Render
+
+👉 “La CI valide le code, le CD le met automatiquement en production.”
+
+## 🛠️ Stack technique
+
+### Frontend
+
+- React
+- Vite
+- JavaScript (ES6+)
+
+### Backend
+
+- Node.js
+- Express
+
+### Base de données
+
+- PostgreSQL
+
+### DevOps
+
+- GitHub Actions (CI/CD)
+- Déploiement cloud (Vercel, Render)
+
+### Qualité & Tests
+
+- Biome (lint + format)
+- Jest (tests unitaires backend)
+
+## ⚙️ Fonctionnalités principales
+
+- Suivi de production en temps réel
+- Authentification utilisateur
+- Gestion des données de production
+
+## 🔐 Sécurité
+
+- Rate limiting (protection brute force / spam)
+- Validation des données (anti XSS / injections)
+- Variables d’environnement sécurisées
+- Analyse des dépendances avec npm audit
+
+👉 Approche en couches : sécuriser, ralentir et bloquer les attaques.
+
+## 🔁 CI/CD (Intégration & Déploiement continu)
+
+Pipeline automatisé avec GitHub Actions :
+
+- Installation des dépendances
+- Lint & format (Biome)
+- Tests automatisés (Jest)
+- Audit sécurité (npm audit)
+- Build du projet
+
+👉 Si une étape échoue, le déploiement est bloqué.
+
+## 🧪 Tests
+
+Tests unitaires backend avec Jest :
+
+- Validation des données
+- Création d’articles
+- Gestion des erreurs
+- Prévention des doublons
+
+👉 Base de données mockée pour des tests rapides et isolés.
+
+## 📦 Installation locale
+
+```bash
+git clone https://github.com/ton-repo-front
+cd ton-repo-front
+npm install
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 📌 Améliorations futures
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Ajout de tests frontend
+- Containerisation avec Docker
+- Monitoring (logs, performances, erreurs)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 👨‍💻 Auteur
+
+Jean Manyama Kapinga
+
+- 📧 <jean.manyama@gmail.com>
+- 🔗 <https://github.com/JeanManyama>
