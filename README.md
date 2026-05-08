@@ -1,5 +1,10 @@
 # Kalhyge-Prod – Suivi de production industrielle
 
+![React](https://img.shields.io/badge/React-Frontend-blue)
+![Node.js](https://img.shields.io/badge/Node.js-Backend-green)
+![CI/CD](https://img.shields.io/badge/CI/CD-GitHub_Actions-orange)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
+
 Application web permettant le suivi en temps réel de la production en blanchisserie industrielle.
 Objectif : remplacer les relevés manuels et améliorer la prise de décision.
 
@@ -93,8 +98,8 @@ Tests unitaires backend avec Jest :
 ## 📦 Installation locale
 
 ```bash
-git clone https://github.com/ton-repo-front
-cd ton-repo-front
+git clone https://github.com/JeanManyama/kalhyge-prod-frontend.git
+cd kalhyge-prod-frontend
 npm install
 npm run dev
 ```
@@ -111,3 +116,17 @@ Jean Manyama Kapinga
 
 - 📧 <jean.manyama@gmail.com>
 - 🔗 <https://github.com/JeanManyama>
+
+## 📸 Aperçu de l’application
+
+### Connexion
+
+![Login](./front/screenshots/login-page.png)
+
+### Dashboard de production
+
+![Dashboard](./front/screenshots/production-dashboard.png)
+
+### Administration
+
+![Admin](./front/screenshots/admin-page.png)
