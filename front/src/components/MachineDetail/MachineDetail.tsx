@@ -63,7 +63,7 @@ const MachineDetail = ({
   const fetchMachineData = useCallback(
     async (timerId: number) => {
       if (!machineId || !timerId) return;
-      // console.log("timerId  AU FRONT -------------------------", timerId);
+      // console.log("timerId  AU FRONT -------------------------", timerId); ici
       try {
         setLoading(true);
         setError(null);
