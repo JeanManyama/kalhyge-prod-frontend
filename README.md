@@ -10,7 +10,7 @@ Objectif : remplacer les relevés manuels et améliorer la prise de décision.
 
 ## 🚀 Démo en ligne
 
-- 🌐 Frontend : <https://deploy-front-vercel-cd.vercel.app>
+- 🌐 Frontend : <https://kalhyge-prod.vercel.app>
 - 🔗 API Backend : <https://api-kalhygee.onrender.com>
   
   Test rapide :
