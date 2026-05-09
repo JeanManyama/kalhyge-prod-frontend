@@ -15,7 +15,7 @@ Objectif : remplacer les relevés manuels et améliorer la prise de décision.
   
   Test rapide :
   - GET /health → vérifie que l’API est opérationnelle
-- 💻 Code Backend : <https://github.com/JeanManyama/api-kalhygee>
+- 💻 Code Backend : <https://github.com/JeanManyama/kalhyge-prod-backend>
 
 ## 🏗️ Architecture globale
 
