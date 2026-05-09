@@ -28,7 +28,7 @@ import Modale3trait from "../Modale3trait/Modale3trait";
 import ModaleUpdatePassword from "../ModaleUpdatePassword/ModaleUpdatePassword";
 import "./Home.scss";
 
-//Utiliser HashRouter si l'utilisation de githubPages !!!
+//Utiliser HashRouter si l'utilisation de githubPages !!!!!!!
 
 function Home() {
   const { timerId } = useTimer(); // Depuis context
