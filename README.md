@@ -36,7 +36,7 @@ Pipeline DevOps :
 
 - React
 - Vite
-- JavaScript (ES6+)
+- TypeScript
 
 ### Backend
 
