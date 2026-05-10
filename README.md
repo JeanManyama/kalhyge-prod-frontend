@@ -11,7 +11,7 @@ Objectif : remplacer les relevés manuels et améliorer la prise de décision.
 ## 🚀 Démo en ligne
 
 - 🌐 Frontend : <https://kalhyge-prod.vercel.app>
-- 🔗 API Backend : <https://api-kalhygee.onrender.com>
+- 🔗 API Backend : [Kalhyge-Prod API](https://api-kalhygee.onrender.com)
   
   Test rapide :
   - GET /health → vérifie que l’API est opérationnelle
