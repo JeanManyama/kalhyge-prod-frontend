@@ -5,6 +5,12 @@
 ![CI/CD](https://img.shields.io/badge/CI/CD-GitHub_Actions-orange)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
 
+
+![React](https://img.shields.io/badge/React-20232A?logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-20232A?logo=node.js)
+![CI/CD](https://img.shields.io/badge/CI/CD-GitHub_Actions-20232A?logo=github)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-20232A?logo=postgresql)
+
 Application web permettant le suivi en temps réel de la production en blanchisserie industrielle.
 Objectif : remplacer les relevés manuels et améliorer la prise de décision.
 
@@ -15,7 +21,7 @@ Objectif : remplacer les relevés manuels et améliorer la prise de décision.
   
   Test rapide :
   - GET /health → vérifie que l’API est opérationnelle
-- 💻 Code Backend : <https://github.com/JeanManyama/kalhyge-prod-backend>
+- ⚙️ Backend Repository : <https://github.com/JeanManyama/kalhyge-prod-backend>
 
 ## 🏗️ Architecture globale
 
