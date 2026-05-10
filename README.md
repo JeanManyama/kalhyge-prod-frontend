@@ -1,17 +1,13 @@
 # Kalhyge-Prod – Suivi de production industrielle
 
-![React](https://img.shields.io/badge/React-Frontend-blue)
-![Node.js](https://img.shields.io/badge/Node.js-Backend-green)
-![CI/CD](https://img.shields.io/badge/CI/CD-GitHub_Actions-orange)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
-
-
 ![React](https://img.shields.io/badge/React-20232A?logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-20232A?logo=node.js)
 ![CI/CD](https://img.shields.io/badge/CI/CD-GitHub_Actions-20232A?logo=github)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-20232A?logo=postgresql)
+![TypeScript](https://img.shields.io/badge/TypeScript-20232A?logo=typescript)
 
-Application web permettant le suivi en temps réel de la production en blanchisserie industrielle.
+Application web de suivi de production industrielle en temps réel, développée avec une approche orientée sécurité, qualité logicielle et DevOps.
+
 Objectif : remplacer les relevés manuels et améliorer la prise de décision.
 
 ## 🚀 Démo en ligne
