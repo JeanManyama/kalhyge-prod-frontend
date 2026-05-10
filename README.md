@@ -14,9 +14,9 @@ Objectif : remplacer les relevés manuels et améliorer la prise de décision.
 
 - 🌐 Frontend : <https://kalhyge-prod.vercel.app>
 - 🔗 API Backend : [Kalhyge-Prod API](https://api-kalhygee.onrender.com)
-  
-  Test rapide :
-  - GET /health → vérifie que l’API est opérationnelle
+     
+      Test rapide :
+      - GET /health → vérifie que l’API est opérationnelle
 - ⚙️ Backend Repository : <https://github.com/JeanManyama/kalhyge-prod-backend>
 
 ## 🏗️ Architecture globale
