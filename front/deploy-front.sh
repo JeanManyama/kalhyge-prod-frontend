@@ -7,7 +7,7 @@ echo "🏗️  [2/4] Build de l'application avec Vite (mode production)..."
 npx vite build --mode production
 
 echo "🔁 [3/4] Copie de index.html vers 200.html (support SPA routes)"
-cp ./dist/index.html ./dist/200.html
+cp ./dist/index.html ./dist/200.html # SPA fallback pour Surge (routing client-side)
 
 echo "🌍 [4/4] Déploiement sur Surge..."
 surge ./dist kalhyge-production.surge.sh

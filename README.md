@@ -86,6 +86,14 @@ Pipeline automatisé avec GitHub Actions :
 
 👉 Si une étape échoue, le déploiement est bloqué.
 
+## 🧠 Ancienne méthode de déploiement
+
+Le projet utilisait auparavant des scripts Bash pour automatiser les déploiements manuels.
+
+Aujourd’hui, cette approche a été remplacée par un pipeline CI/CD (GitHub Actions + déploiement automatique sur Vercel/Render).
+
+Ces scripts sont conservés à titre pédagogique pour montrer l’évolution du projet.
+
 ## 🧪 Tests
 
 Tests unitaires backend avec Jest :
