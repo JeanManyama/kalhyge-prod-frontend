@@ -37,7 +37,6 @@ Pipeline DevOps :
 ### Frontend
 
 - React
-- Vue.js
 - Vite
 - TypeScript
 
@@ -53,7 +52,6 @@ Pipeline DevOps :
 ### DevOps
 
 - GitHub Actions (CI/CD)
-- Docker
 - Déploiement cloud (Vercel, Render)
 
 ### Qualité & Tests
